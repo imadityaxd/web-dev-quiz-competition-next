@@ -1,6 +1,9 @@
 import React from "react";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
+import Link from "next/link";
+import MagicButton from "./ui/MagicButton";
+import { FaLocationArrow } from "react-icons/fa";
 
 export default function Hero() {
   return (
@@ -32,6 +35,13 @@ export default function Hero() {
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
             Hi, I&apos;m Ravish, a Next.js Developer based in India
           </p>
+          <Link href="#about">
+            <MagicButton
+              title="show my work"
+              icon={<FaLocationArrow />}
+              position="right"
+            />
+          </Link>
         </div>
       </div>
     </div>

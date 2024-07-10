@@ -1,24 +1,27 @@
 "use client";
 import React from "react";
 import { FloatingNav } from "./ui/floating-navbar";
-import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
+import { FaHome, FaUserCheck } from "react-icons/fa";
+import { AiFillMessage } from "react-icons/ai";
 export function Navbar() {
   const navItems = [
     {
       name: "Home",
       link: "/",
-      icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
+      icon: <FaHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
     },
     {
       name: "About",
       link: "/about",
-      icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
+      icon: (
+        <FaUserCheck className="h-4 w-4 text-neutral-500 dark:text-white" />
+      ),
     },
     {
       name: "Contact",
       link: "/contact",
       icon: (
-        <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
+        <AiFillMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
       ),
     },
   ];
@@ -28,4 +31,3 @@ export function Navbar() {
     </div>
   );
 }
-
