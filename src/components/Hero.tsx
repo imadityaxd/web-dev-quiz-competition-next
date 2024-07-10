@@ -27,9 +27,11 @@ export default function Hero() {
           </h2>
           <TextGenerateEffect
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
-            words="Learn web dev with quizzes"
+            words="Learn javaScript with Quizzes"
           />
-          <p></p>
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+            Hi, I&apos;m Ravish, a Next.js Developer based in India
+          </p>
         </div>
       </div>
     </div>
