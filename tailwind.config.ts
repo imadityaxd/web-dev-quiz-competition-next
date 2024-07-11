@@ -26,6 +26,18 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+        opensans: ['Open Sans', 'sans-serif'],
+        playfair: ['Playfair Display', 'serif'],
+        roboto: ['Roboto', 'sans-serif'],
+        lora: ['Lora', 'serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        merriweather: ['Merriweather', 'serif'],
+        lato: ['Lato', 'sans-serif'],
+        raleway: ['Raleway', 'sans-serif'],
+        notosans: ['Noto Sans', 'sans-serif'],
+      },
       colors: {
         black: {
           DEFAULT: "#000",
