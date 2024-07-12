@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import { ThreeDCardDemo } from "@/components/ui/ThreeDCard";
 import { GlobeDemo } from "@/components/ui/WorldGlobe";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
       <div className="max-w-7xl w-full">
         <Hero />
         <GlobeDemo />
+        <ThreeDCardDemo />
       </div>
     </main>
   );

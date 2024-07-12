@@ -55,7 +55,7 @@ export const FloatingNav = ({
           opacity: visible ? 1 : 0,
         }}
         transition={{
-          duration: 0.2,
+          duration: 0.03,
         }}
         className={cn(
           // change rounded-full to rounded-lg

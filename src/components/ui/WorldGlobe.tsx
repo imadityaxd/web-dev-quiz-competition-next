@@ -396,7 +396,7 @@ export function GlobeDemo() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-10 h-[30rem] md:h-auto dark:bg-black-100 bg-white relative w-full">
+    <div className="my-10 flex flex-row items-center justify-center h-[21rem] md:h-[30rem] dark:bg-black-100 bg-white relative w-full">
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
         <motion.div
           initial={{
@@ -416,7 +416,7 @@ export function GlobeDemo() {
             compete with javaScript developers around the world
           </h2>
         </motion.div>
-        <div className="absolute w-full h-72 md:h-full z-10">
+        <div className="absolute w-full h-[18rem] md:h-[35rem] z-10">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
