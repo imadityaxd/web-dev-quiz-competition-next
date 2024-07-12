@@ -1,4 +1,6 @@
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+import { TypewriterEffectSmoothDemo } from "@/components/TypeWriter";
 import { ThreeDCardDemo } from "@/components/ui/ThreeDCard";
 import { GlobeDemo } from "@/components/ui/WorldGlobe";
 
@@ -9,6 +11,8 @@ export default function Home() {
         <Hero />
         <GlobeDemo />
         <ThreeDCardDemo />
+        <TypewriterEffectSmoothDemo />
+        <Footer />
       </div>
     </main>
   );
