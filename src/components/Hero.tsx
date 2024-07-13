@@ -36,7 +36,7 @@ export default function Hero() {
             words="javaScript output based questions quizz competition will start on
             saturday at 9:30pm."
           ></TextGenerateEffect>
-          <Link href="#about">
+          <Link href="/about-competition">
             <MagicButton
               title="Register Yourself"
               icon={<FaLocationArrow />}
