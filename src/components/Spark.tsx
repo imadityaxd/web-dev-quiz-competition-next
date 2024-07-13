@@ -64,12 +64,6 @@ export function SparklesPreview() {
               Join us every week for a new challenge and let’s make learning
               JavaScript fun and competitive!
             </p>
-
-            <button className="border px-4 py-1 rounded-lg  border-gray-500 text-gray-300">
-              Explore
-            </button>
-
-            {/* Meaty part - Meteor effect */}
             <Meteors number={20} />
           </div>
         </div>

@@ -18,8 +18,8 @@ export function Navbar() {
       ),
     },
     {
-      name: "Contact",
-      link: "/contact",
+      name: "Quiz",
+      link: "/play-quiz",
       icon: (
         <AiFillMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
       ),
