@@ -38,7 +38,7 @@ export default function Hero() {
           ></TextGenerateEffect>
           <Link href="/about-competition">
             <MagicButton
-              title="Register Yourself"
+              title="Know More"
               icon={<FaLocationArrow />}
               position="right"
             />
