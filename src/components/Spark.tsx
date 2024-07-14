@@ -3,10 +3,15 @@ import React from "react";
 import { SparklesCore } from "./ui/sparkles";
 import { Meteors } from "./ui/meteors";
 import { FaCheckCircle } from "react-icons/fa";
+import { cn } from "@/utils/cn";
 
 export function SparklesPreview() {
   return (
-    <div className="h-auto relative w-full bg-black-100 flex flex-col overflow-hidden rounded-md">
+    <div
+      className={`${cn(
+        "kanit"
+      )} h-auto relative w-full bg-black-100 flex flex-col overflow-hidden rounded-md`}
+    >
       <div className="w-full absolute inset-0 h-screen">
         <SparklesCore
           id="tsparticlesfullpage"

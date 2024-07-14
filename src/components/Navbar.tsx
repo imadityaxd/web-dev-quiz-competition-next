@@ -4,6 +4,7 @@ import { FloatingNav } from "./ui/floating-navbar";
 import { FaHome, FaUserCheck } from "react-icons/fa";
 import { AiFillMessage } from "react-icons/ai";
 export function Navbar() {
+
   const navItems = [
     {
       name: "Home",
@@ -19,7 +20,7 @@ export function Navbar() {
     },
     {
       name: "Quiz",
-      link: "/play-quiz",
+      link: "/start-quiz",
       icon: (
         <AiFillMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
       ),

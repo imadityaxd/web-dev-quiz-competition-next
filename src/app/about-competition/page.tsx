@@ -16,7 +16,7 @@ export default function About() {
           Topics you need to prepare for the quiz competition.
         </h2>
         <CardHoverEffectDemo />
-        <Link href="/play-quiz">
+        <Link href="/start-quiz">
         <MagicButton
           title="Go To Quiz Page"
           icon={<FaTrophy />}
