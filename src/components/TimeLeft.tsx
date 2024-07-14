@@ -18,6 +18,7 @@ const formatTime = (time: number): string => {
 
 const TimeUntilCompetition: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<string>("");
+  const [timerEnded, setTimerEnded] = useState<boolean>(false);
 
   useEffect(() => {
     const updateTimer = () => {
@@ -27,10 +28,16 @@ const TimeUntilCompetition: React.FC = () => {
 
       now.setDate(now.getDate() + 6); //add day
       now.setHours(now.getHours() + 3); //add hour
-      now.setMinutes(now.getMinutes() + 38); //add minute
+      now.setMinutes(now.getMinutes() + 18); //add minute
       //////////////////////////////////////////////////////////////////
       const nextCompetition = getNextCompetitionTime();
       const diff = nextCompetition.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        setTimeLeft("The competition has started!");
+        setTimerEnded(true);
+        return;
+      }
 
       if (diff > 2 * 24 * 60 * 60 * 1000) {
         const day = nextCompetition.toLocaleString("en-US", {
@@ -60,14 +67,27 @@ const TimeUntilCompetition: React.FC = () => {
       }
     };
 
-    const timerInterval = setInterval(updateTimer, 1000);
+    const timerInterval = setInterval(() => {
+      if (!timerEnded) {
+        updateTimer();
+      }
+    }, 1000);
 
     // Update immediately on component mount
     updateTimer();
 
     // Clear interval on component unmount
     return () => clearInterval(timerInterval);
-  }, []);
+  }, [timerEnded]);
+
+  useEffect(() => {
+    if (timerEnded) {
+      // Perform the action when the timer ends
+      console.log("Timer has ended. Perform your action here.");
+      // Example action: redirect to another page or show a message
+      // window.location.href = '/some-page';
+    }
+  }, [timerEnded]);
 
   return <div>{timeLeft}</div>;
 };
