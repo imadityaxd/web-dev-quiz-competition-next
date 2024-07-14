@@ -36,13 +36,13 @@ export function SparklesPreview() {
 
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
               <FaCheckCircle className="inline text-3xl text-purple pr-2" />I
-              created this website as a platform for JavaScript enthusiasts from
-              all around the world to come together and challenge themselves
-              with exciting quiz questions.
+              build this website as a platform for JavaScript enthusiasts from
+              all around the world to come together compete with each other.
             </p>
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
               <FaCheckCircle className="inline text-3xl text-purple pr-2" />
-              Every <span className="font-semibold">Saturday at 9:30 PM</span>,
+              Every{" "}
+              <span className="font-semibold">Saturday at 9:30 PM (IST)</span>,
               I organize a{" "}
               <span className="font-semibold">JavaScript Quiz Competition</span>{" "}
               where you can put your skills to the test and compete with others
@@ -56,18 +56,23 @@ export function SparklesPreview() {
               against other participants.
             </p>
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
-              <FaCheckCircle className="inline text-3xl text-purple pr-2" /> And
-              that’s not all! The top rankers will get a{" "}
-              <span className="font-semibold">
-                shoutout on our Instagram handle
-              </span>
-              , giving you the recognition you deserve for your hard work and
-              talent.
+              <FaCheckCircle className="inline text-3xl text-purple pr-2" />{" "}
+              It&apos;s totally free and Open to all participants worldwide.
+              Anyone can take part in it.
             </p>
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
-              <FaCheckCircle className="inline text-3xl text-purple pr-2" />{" "}
-              Join us every week for a new challenge and let’s make learning
-              JavaScript fun and competitive!
+              <FaCheckCircle className="inline text-3xl text-purple pr-2" /> To
+              participate, simply register before the quiz starts and provide
+              your Instagram ID during registration. Top performers will receive
+              a special shoutout on our{" "}
+              <a
+                href="https://www.instagram.com/web________developer"
+                target="_blank"
+                rel="noopener noreferrer" className="text-pink-500 font-bold"
+              >
+                Instagram
+              </a>{" "}
+              handle.
             </p>
             <Meteors number={20} />
           </div>
