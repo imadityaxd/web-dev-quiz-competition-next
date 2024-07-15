@@ -15,7 +15,7 @@ export function TypewriterEffectSmoothDemo() {
       text: "about",
     },
     {
-      text: "javsScript",
+      text: "javaScript",
     },
     {
       text: "Quiz",
