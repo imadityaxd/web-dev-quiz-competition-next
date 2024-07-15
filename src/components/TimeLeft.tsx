@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const getNextCompetitionTime = (): Date => {
   const now = new Date();
@@ -19,22 +21,28 @@ const formatTime = (time: number): string => {
 const TimeUntilCompetition: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [timerEnded, setTimerEnded] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
       //////////////////////////////////////////////////////////////////
       // for testing only
-      now.setDate(now.getDate() + 4); // add day
-      now.setHours(now.getHours() + 3); // add hour
-      now.setMinutes(now.getMinutes() + 21); // add minute
+      now.setDate(now.getDate() + 5); // add day
+      now.setHours(now.getHours() + 2); // add hour
+      now.setMinutes(now.getMinutes() + 13); // add minute
       //////////////////////////////////////////////////////////////////
       const nextCompetition = getNextCompetitionTime();
       const diff = nextCompetition.getTime() - now.getTime();
 
       if (diff <= 0) {
-        setTimeLeft("The competition has started!");
-        setTimerEnded(true);
+        if (!timerEnded) {
+          // Check if the timer hasn't ended yet
+          console.log("competition started, do actions here");
+          setTimeLeft("The competition has started!");
+          setTimerEnded(true);
+          router.push("/register");
+        }
         return;
       }
 
@@ -47,7 +55,7 @@ const TimeUntilCompetition: React.FC = () => {
       );
       const seconds = formatTime(Math.floor((diff % (1000 * 60)) / 1000));
       setTimeLeft(
-        `${days}d ${hours}h ${minutes}m ${seconds}s left until the next competition`
+        `${days}d ${hours}h ${minutes}m ${seconds}s left for competition`
       );
     };
 
@@ -62,43 +70,6 @@ const TimeUntilCompetition: React.FC = () => {
 
     // Clear interval on component unmount
     return () => clearInterval(timerInterval);
-  }, [timerEnded]);
-
-  useEffect(() => {
-    if (timerEnded) {
-      console.log("Timer has ended. Perform your action here.");
-
-      const oneMinuteLater = new Date();
-      oneMinuteLater.setMinutes(oneMinuteLater.getMinutes() + 1); // Add one minute
-
-      const rescheduleTimer = () => {
-        const now = new Date();
-        if (oneMinuteLater.getTime() - now.getTime() <= 0) {
-          console.log("Rescheduling the timer for next competition.");
-          setTimerEnded(false); // Reset timer ended state
-          const nextCompetition = getNextCompetitionTime();
-          const diff = nextCompetition.getTime() - new Date().getTime();
-          const days = formatTime(Math.floor(diff / (1000 * 60 * 60 * 24)));
-          const hours = formatTime(
-            Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-          );
-          const minutes = formatTime(
-            Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-          );
-          const seconds = formatTime(Math.floor((diff % (1000 * 60)) / 1000));
-          setTimeLeft(
-            `${days}d ${hours}h ${minutes}m ${seconds}s left until the next competition`
-          );
-        }
-      };
-
-      const rescheduleInterval = setInterval(rescheduleTimer, 1000);
-
-      // Clear the reschedule interval after one minute
-      setTimeout(() => {
-        clearInterval(rescheduleInterval);
-      }, oneMinuteLater.getTime() - new Date().getTime());
-    }
   }, [timerEnded]);
 
   return <div>{timeLeft}</div>;
