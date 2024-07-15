@@ -41,12 +41,12 @@ export function SparklesPreview() {
             </p>
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
               <FaCheckCircle className="inline text-3xl text-purple pr-2" />
-              Every{" "}
+              This{" "}
               <span className="font-semibold">Saturday at 9:30 PM (IST)</span>,
-              I organize a{" "}
+              I&apos;m organising a{" "}
               <span className="font-semibold">JavaScript Quiz Competition</span>{" "}
               where you can put your skills to the test and compete with others
-              for the top spot on our{" "}
+              for the top rank on our{" "}
               <span className="font-semibold">leaderboard</span>.
             </p>
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">

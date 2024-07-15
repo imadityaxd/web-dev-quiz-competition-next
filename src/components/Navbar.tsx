@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { FloatingNav } from "./ui/floating-navbar";
-import { FaHome, FaUserCheck } from "react-icons/fa";
-import { AiFillMessage } from "react-icons/ai";
+import { FaHome, FaTrophy, FaUserCheck } from "react-icons/fa";
 export function Navbar() {
 
   const navItems = [
@@ -19,10 +18,10 @@ export function Navbar() {
       ),
     },
     {
-      name: "Quiz",
+      name: "competition",
       link: "/start-quiz",
       icon: (
-        <AiFillMessage className="h-4 w-4 text-neutral-500 dark:text-white" />
+        <FaTrophy className="h-4 w-4 text-neutral-500 dark:text-white" />
       ),
     },
   ];

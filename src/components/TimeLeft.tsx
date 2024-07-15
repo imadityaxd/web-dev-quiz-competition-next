@@ -22,13 +22,12 @@ const TimeUntilCompetition: React.FC = () => {
 
   useEffect(() => {
     const updateTimer = () => {
-      //    Use this in production
       const now = new Date();
       //////////////////////////////////////////////////////////////////
-
-      now.setDate(now.getDate() + 6); //add day
-      now.setHours(now.getHours() + 3); //add hour
-      now.setMinutes(now.getMinutes() + 18); //add minute
+      // for testing only
+      now.setDate(now.getDate() + 4); // add day
+      now.setHours(now.getHours() + 3); // add hour
+      now.setMinutes(now.getMinutes() + 21); // add minute
       //////////////////////////////////////////////////////////////////
       const nextCompetition = getNextCompetitionTime();
       const diff = nextCompetition.getTime() - now.getTime();
@@ -39,32 +38,17 @@ const TimeUntilCompetition: React.FC = () => {
         return;
       }
 
-      if (diff > 2 * 24 * 60 * 60 * 1000) {
-        const day = nextCompetition.toLocaleString("en-US", {
-          weekday: "long",
-        });
-        const date = nextCompetition.toLocaleString("en-US", {
-          month: "long",
-          day: "numeric",
-        });
-        const time = nextCompetition.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-        setTimeLeft(`Next competition is on ${day} at ${time} (${date})`);
-      } else {
-        const days = formatTime(Math.floor(diff / (1000 * 60 * 60 * 24)));
-        const hours = formatTime(
-          Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        );
-        const minutes = formatTime(
-          Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-        );
-        const seconds = formatTime(Math.floor((diff % (1000 * 60)) / 1000));
-        setTimeLeft(
-          `${days}d ${hours}h ${minutes}m ${seconds}s left until the next competition`
-        );
-      }
+      const days = formatTime(Math.floor(diff / (1000 * 60 * 60 * 24)));
+      const hours = formatTime(
+        Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      );
+      const minutes = formatTime(
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      );
+      const seconds = formatTime(Math.floor((diff % (1000 * 60)) / 1000));
+      setTimeLeft(
+        `${days}d ${hours}h ${minutes}m ${seconds}s left until the next competition`
+      );
     };
 
     const timerInterval = setInterval(() => {
@@ -82,10 +66,38 @@ const TimeUntilCompetition: React.FC = () => {
 
   useEffect(() => {
     if (timerEnded) {
-      // Perform the action when the timer ends
       console.log("Timer has ended. Perform your action here.");
-      // Example action: redirect to another page or show a message
-      // window.location.href = '/some-page';
+
+      const oneMinuteLater = new Date();
+      oneMinuteLater.setMinutes(oneMinuteLater.getMinutes() + 1); // Add one minute
+
+      const rescheduleTimer = () => {
+        const now = new Date();
+        if (oneMinuteLater.getTime() - now.getTime() <= 0) {
+          console.log("Rescheduling the timer for next competition.");
+          setTimerEnded(false); // Reset timer ended state
+          const nextCompetition = getNextCompetitionTime();
+          const diff = nextCompetition.getTime() - new Date().getTime();
+          const days = formatTime(Math.floor(diff / (1000 * 60 * 60 * 24)));
+          const hours = formatTime(
+            Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+          );
+          const minutes = formatTime(
+            Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+          );
+          const seconds = formatTime(Math.floor((diff % (1000 * 60)) / 1000));
+          setTimeLeft(
+            `${days}d ${hours}h ${minutes}m ${seconds}s left until the next competition`
+          );
+        }
+      };
+
+      const rescheduleInterval = setInterval(rescheduleTimer, 1000);
+
+      // Clear the reschedule interval after one minute
+      setTimeout(() => {
+        clearInterval(rescheduleInterval);
+      }, oneMinuteLater.getTime() - new Date().getTime());
     }
   }, [timerEnded]);
 

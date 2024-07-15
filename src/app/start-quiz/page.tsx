@@ -74,7 +74,7 @@ export default function page() {
           </div>
         </BackgroundGradient>
       </div>
-      <div>
+      <div className="">
         <TimeUntilCompetition />
       </div>
     </>
