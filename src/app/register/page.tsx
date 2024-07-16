@@ -3,11 +3,14 @@ import React from "react";
 import { cn } from "@/utils/cn";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
-export default function page() {
+export default function Register() {
+  const [name, setName] = useState("");
+  const [instaId, setInstaId] = useState("");
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log("Form submitted: ", name, instaId);
   };
   return (
     <div className="bg-black-100 pt-36 pb-5 px-4 rounded-lg">
@@ -25,14 +28,27 @@ export default function page() {
         <form className="my-8" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer>
-              <Label htmlFor="firstname">Name</Label>
-              <Input id="firstname" placeholder="Ravish" type="text" />
+              <Label htmlFor="firstname">
+                Name <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="firstname"
+                placeholder="Ravish"
+                type="text"
+                required
+                onChange={(e) => setName(e.target.value)}
+              />
             </LabelInputContainer>
           </div>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer>
               <Label htmlFor="firstname">Instagram Id</Label>
-              <Input id="insta" placeholder="@cykoravish" type="text" />
+              <Input
+                id="insta"
+                placeholder="@cykoravish"
+                type="text"
+                onChange={(e) => setInstaId(e.target.value)}
+              />
             </LabelInputContainer>
           </div>
 
