@@ -28,9 +28,9 @@ const TimeUntilCompetition: React.FC = () => {
       const now = new Date();
       //////////////////////////////////////////////////////////////////
       // for testing only
-      now.setDate(now.getDate() + 5); // add day
-      now.setHours(now.getHours() + 2); // add hour
-      now.setMinutes(now.getMinutes() + 13); // add minute
+      now.setDate(now.getDate() + 4); // add day
+      now.setHours(now.getHours() + 8); // add hour
+      now.setMinutes(now.getMinutes() + 57); // add minute
       //////////////////////////////////////////////////////////////////
       const nextCompetition = getNextCompetitionTime();
       const diff = nextCompetition.getTime() - now.getTime();
@@ -54,9 +54,7 @@ const TimeUntilCompetition: React.FC = () => {
         Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
       );
       const seconds = formatTime(Math.floor((diff % (1000 * 60)) / 1000));
-      setTimeLeft(
-        `${days}d ${hours}h ${minutes}m ${seconds}s left for competition`
-      );
+      setTimeLeft(`${days}d ${hours}hr ${minutes}min ${seconds}sec`);
     };
 
     const timerInterval = setInterval(() => {
@@ -70,9 +68,15 @@ const TimeUntilCompetition: React.FC = () => {
 
     // Clear interval on component unmount
     return () => clearInterval(timerInterval);
-  }, [timerEnded]);
+  }, [router, timerEnded]);
 
-  return <div>{timeLeft}</div>;
+  return (
+    <div className="bg-black-100 flex justify-center">
+      <div className="text-center my-16 border border-purple p-4 rounded-lg font-semibold text-purple">
+        {timeLeft}
+      </div>
+    </div>
+  );
 };
 
 export default TimeUntilCompetition;
