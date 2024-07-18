@@ -5,18 +5,45 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import axios from "axios";
+import { showToast } from "@/helpers/toastModifier/modifyToast";
+import { LuLoader2 } from "react-icons/lu";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [instaId, setInstaId] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Basic validation for name field
+    if (name.trim().length === 0) {
+      showToast("Name is required", "error");
+      return;
+    } else if (name.trim().length < 3) {
+      showToast("Name must be at least 3 characters long", "error");
+      return;
+    }
+
+    // Optional validation for instaId length
+    if (instaId.trim().length > 30) {
+      showToast("Instagram ID should not exceed 30 characters", "error");
+      return;
+    }
+
     const data = { name, instaId };
+    setLoading(true);
     try {
       const response = await axios.post("/api/register", data);
-      console.log("successfully resitered");
+      console.log("res: ", response.data.message);
+      showToast(response.data.message, "success");
     } catch (error: any) {
-      console.log("successfully resitered");
+      console.log("error: ", error.response.data.message);
+      showToast(
+        error.response?.data?.message || "error in registering user",
+        "error"
+      );
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -49,7 +76,7 @@ export default function Register() {
           </div>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer>
-              <Label htmlFor="firstname">Instagram Id</Label>
+              <Label htmlFor="firstname">Instagram Id &nbsp;(optional)</Label>
               <Input
                 id="insta"
                 placeholder="@cykoravish"
@@ -60,10 +87,21 @@ export default function Register() {
           </div>
 
           <button
-            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-purple border border-purple rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            className={`bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-purple border border-purple rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] ${
+              loading && "bg-gray-400 cursor-not-allowed"
+            } `}
             type="submit"
+            disabled={loading}
           >
-            Submit and start Quiz
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <LuLoader2 className="animate-spin text-white mr-2" size={24} />
+                <span>Loading...</span>
+              </div>
+            ) : (
+              "Submit and start Quiz"
+            )}
+
             <BottomGradient />
           </button>
 

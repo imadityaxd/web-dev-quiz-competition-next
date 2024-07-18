@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import { useRouter } from "next/router";
 import { useRouter } from "next/navigation";
+import MagicButton from "./ui/MagicButton";
+import Link from "next/link";
 
 const getNextCompetitionTime = (): Date => {
   const now = new Date();
@@ -29,8 +30,8 @@ const TimeUntilCompetition: React.FC = () => {
       //////////////////////////////////////////////////////////////////
       // for testing only
       now.setDate(now.getDate() + 2); // add day
-      now.setHours(now.getHours() + 10); // add hour
-      now.setMinutes(now.getMinutes() + 48); // add minute
+      now.setHours(now.getHours() + 5); // add hour
+      now.setMinutes(now.getMinutes() + 26); // add minute
       //////////////////////////////////////////////////////////////////
       const nextCompetition = getNextCompetitionTime();
       const diff = nextCompetition.getTime() - now.getTime();
@@ -41,7 +42,7 @@ const TimeUntilCompetition: React.FC = () => {
           console.log("competition started, do actions here");
           setTimeLeft("The competition has started!");
           setTimerEnded(true);
-          router.push("/register");
+          // router.push("/register");
         }
         return;
       }
@@ -71,10 +72,16 @@ const TimeUntilCompetition: React.FC = () => {
   }, [router, timerEnded]);
 
   return (
-    <div className="bg-black-100 flex justify-center">
-      <div className="text-center my-16 border border-purple p-4 rounded-lg font-semibold text-purple">
-        {timeLeft}
-      </div>
+    <div className="bg-black-100 flex justify-center items-center py-16 p-4 text-center">
+      {timerEnded ? (
+        <Link href="/register" className="w-full">
+          <MagicButton title="Quick Registration" icon="" position="" />
+        </Link>
+      ) : (
+        <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
+          {timeLeft}
+        </div>
+      )}
     </div>
   );
 };
