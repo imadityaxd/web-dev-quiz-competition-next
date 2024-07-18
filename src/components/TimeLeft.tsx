@@ -28,9 +28,9 @@ const TimeUntilCompetition: React.FC = () => {
       const now = new Date();
       //////////////////////////////////////////////////////////////////
       // for testing only
-      now.setDate(now.getDate() + 4); // add day
-      now.setHours(now.getHours() + 8); // add hour
-      now.setMinutes(now.getMinutes() + 57); // add minute
+      now.setDate(now.getDate() + 2); // add day
+      now.setHours(now.getHours() + 10); // add hour
+      now.setMinutes(now.getMinutes() + 48); // add minute
       //////////////////////////////////////////////////////////////////
       const nextCompetition = getNextCompetitionTime();
       const diff = nextCompetition.getTime() - now.getTime();
