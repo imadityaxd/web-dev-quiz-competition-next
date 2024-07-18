@@ -4,13 +4,20 @@ import { cn } from "@/utils/cn";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [instaId, setInstaId] = useState("");
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted: ", name, instaId);
+    const data = { name, instaId };
+    try {
+      const response = await axios.post("/api/register", data);
+      console.log("successfully resitered");
+    } catch (error: any) {
+      console.log("successfully resitered");
+    }
   };
   return (
     <div className="bg-black-100 pt-36 pb-5 px-4 rounded-lg">
