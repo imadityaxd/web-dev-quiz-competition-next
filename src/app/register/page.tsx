@@ -7,11 +7,13 @@ import { useState } from "react";
 import axios from "axios";
 import { showToast } from "@/helpers/toastModifier/modifyToast";
 import { LuLoader2 } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [instaId, setInstaId] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -22,10 +24,13 @@ export default function Register() {
     } else if (name.trim().length < 3) {
       showToast("Name must be at least 3 characters long", "error");
       return;
+    } else if (name.trim().length > 25) {
+      showToast("Name is too long", "error");
+      return;
     }
 
     // Optional validation for instaId length
-    if (instaId.trim().length > 30) {
+    if (instaId.trim().length > 25) {
       showToast("Instagram ID should not exceed 30 characters", "error");
       return;
     }
@@ -36,6 +41,7 @@ export default function Register() {
       const response = await axios.post("/api/register", data);
       console.log("res: ", response.data.message);
       showToast(response.data.message, "success");
+      router.push("/play-quiz");
     } catch (error: any) {
       console.log("error: ", error.response.data.message);
       showToast(
