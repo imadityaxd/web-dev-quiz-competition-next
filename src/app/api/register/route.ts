@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
     //creating token token
     const token = await jwt.sign(tokenData, process.env.JWT_TOKEN_SECRET!, {
-      expiresIn: "1m",
+      expiresIn: "30m",
     });
 
     const response = NextResponse.json(
@@ -34,7 +34,12 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 }
     );
-    response.cookies.set("token", token, { httpOnly: true });
+    const maxAge = 30 * 60; // 30 minutes in seconds
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      maxAge,
+      secure: process.env.NODE_ENV === "production",
+    });
     return response;
   } catch (error) {
     console.error("Error registering user:", error);
