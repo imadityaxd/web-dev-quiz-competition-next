@@ -7,16 +7,19 @@ import {
   formatDateInTimeZone,
   getCompetitionTimeUTC,
 } from "@/helpers/setCompetition/competitionHelper";
+import { useAuth } from "@/context/AuthContext";
+
 const TimeUntilCompetition: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [localCompetitionTime, setLocalCompetitionTime] = useState<string>("");
-  const [timerEnded, setTimerEnded] = useState<boolean>(false);
+  const { timerEnded, setTimerEnded } = useAuth();
+  // const [timerEnded, setTimerEnded] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
-      const nextCompetitionUTC = getCompetitionTimeUTC(1, 15, 58); // Competition set for Sunday at 21:30 IST
+      const nextCompetitionUTC = getCompetitionTimeUTC(1, 14, 53); // Competition set for Sunday at 21:30 IST
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
       console.log("use Zone: ", timeZone);
       const dateFormat = "eeee, MMMM d, yyyy @ HH:mm:ss";
@@ -63,7 +66,7 @@ const TimeUntilCompetition: React.FC = () => {
     updateTimer();
 
     return () => clearInterval(timerInterval);
-  }, [router, timerEnded]);
+  }, [router, setTimerEnded, timerEnded]);
 
   return (
     <div className="bg-black-100 flex justify-center items-center py-16 p-4 text-center">

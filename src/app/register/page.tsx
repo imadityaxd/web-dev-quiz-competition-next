@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/utils/cn";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,12 +8,21 @@ import axios from "axios";
 import { showToast } from "@/helpers/toastModifier/modifyToast";
 import { LuLoader2 } from "react-icons/lu";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [instaId, setInstaId] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { timerEnded } = useAuth();
+
+  useEffect(() => {
+    if (!timerEnded) {
+      router.push("/start-quiz");
+    }
+  }, [router, timerEnded]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
