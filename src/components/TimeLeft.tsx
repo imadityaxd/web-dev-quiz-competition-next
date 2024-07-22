@@ -1,45 +1,41 @@
-"use client";
-
-import { useEffect, useState } from "react";
+// TimeUntilCompetition.tsx
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import MagicButton from "./ui/MagicButton";
 import Link from "next/link";
-
-const getNextCompetitionTime = (): Date => {
-  const now = new Date();
-  const nextSaturday = new Date(
-    now.setDate(now.getDate() + ((6 - now.getDay() + 7) % 7 || 7))
-  );
-  nextSaturday.setHours(21, 30, 0, 0); // Set to 9:30 PM
-
-  return nextSaturday;
-};
-
-const formatTime = (time: number): string => {
-  return time < 10 ? `0${time}` : time.toString();
-};
-
+import {
+  formatDateInTimeZone,
+  getCompetitionTimeUTC,
+} from "@/helpers/setCompetition/competitionHelper";
 const TimeUntilCompetition: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<string>("");
+  const [localCompetitionTime, setLocalCompetitionTime] = useState<string>("");
   const [timerEnded, setTimerEnded] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
-      //////////////////////////////////////////////////////////////////
-      // for testing only
-      now.setDate(now.getDate() + 2); // add day
-      now.setHours(now.getHours() + 5); // add hour
-      now.setMinutes(now.getMinutes() + 26); // add minute
-      //////////////////////////////////////////////////////////////////
-      const nextCompetition = getNextCompetitionTime();
-      const diff = nextCompetition.getTime() - now.getTime();
+      const nextCompetitionUTC = getCompetitionTimeUTC(1, 15, 58); // Competition set for Sunday at 21:30 IST
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
+      console.log("use Zone: ", timeZone);
+      const dateFormat = "eeee, MMMM d, yyyy @ HH:mm:ss";
+
+      // Set the local competition time
+      const localTime = formatDateInTimeZone(
+        nextCompetitionUTC,
+        timeZone,
+        dateFormat
+      );
+      console.log("cal time", localTime);
+      console.log(`Competition starts at: ${localTime}`);
+
+      setLocalCompetitionTime(`Competition starts at: ${localTime}`);
+
+      const diff = nextCompetitionUTC.getTime() - now.getTime();
 
       if (diff <= 0) {
         if (!timerEnded) {
-          // Check if the timer hasn't ended yet
-          console.log("competition started, do actions here");
           setTimeLeft("The competition has started!");
           setTimerEnded(true);
           // router.push("/register");
@@ -47,15 +43,15 @@ const TimeUntilCompetition: React.FC = () => {
         return;
       }
 
-      const days = formatTime(Math.floor(diff / (1000 * 60 * 60 * 24)));
-      const hours = formatTime(
-        Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-      const minutes = formatTime(
-        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-      );
-      const seconds = formatTime(Math.floor((diff % (1000 * 60)) / 1000));
-      setTimeLeft(`${days}d ${hours}hr ${minutes}min ${seconds}sec`);
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     };
 
     const timerInterval = setInterval(() => {
@@ -64,10 +60,8 @@ const TimeUntilCompetition: React.FC = () => {
       }
     }, 1000);
 
-    // Update immediately on component mount
     updateTimer();
 
-    // Clear interval on component unmount
     return () => clearInterval(timerInterval);
   }, [router, timerEnded]);
 
@@ -79,7 +73,8 @@ const TimeUntilCompetition: React.FC = () => {
         </Link>
       ) : (
         <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
-          {timeLeft}
+          {localCompetitionTime}
+          <div>{timeLeft}</div>
         </div>
       )}
     </div>
