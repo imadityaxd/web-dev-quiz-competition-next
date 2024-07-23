@@ -1,19 +1,108 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import questionsData from "@/data/questions.json";
 
-export default function page() {
-  const code = `const arr = [1, 2, 3];
-  arr.push(arr[0]);
-  console.log(arr);`;
+type Option = {
+  id: number;
+  text: string;
+  isCorrect: boolean;
+};
+
+type Question = {
+  id: number;
+  text: string;
+  code: string;
+  options: Option[];
+};
+
+const Page: React.FC = () => {
+  const [selectedOptions, setSelectedOptions] = useState<{
+    [key: number]: string | null;
+  }>({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleOptionChange = (questionId: number, optionText: string) => {
+    setSelectedOptions((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [questionId]: optionText,
+    }));
+  };
+
+  const handleSubmit = () => {
+    setSubmitted(true);
+    // You can handle the submission and result recording here
+    // Example: console.log('Selected Options:', selectedOptions);
+  };
+
   return (
-    <div className="min-h-screen bg-black-100">
-      <div className="pt-48">
-        <h2>Q1. Guess the correct output ?</h2>
-        <SyntaxHighlighter language="javascript" style={solarizedlight}>
-          {code}
-        </SyntaxHighlighter>
+    <div className="min-h-screen bg-black-100 md:px-8 px-4">
+      <div className="pt-40">
+        {questionsData.map((question) => (
+          <div key={question.id} className="mb-8">
+            <h2 className="pb-2 text-white">{`Q${question.id}. ${question.text}`}</h2>
+            <SyntaxHighlighter language="javascript" style={dracula}>
+              {question.code}
+            </SyntaxHighlighter>
+            <div className="mt-4">
+              {question.options.map((option) => (
+                <div key={option.id} className="flex items-center mb-2">
+                  <input
+                    type="radio"
+                    id={`option-${question.id}-${option.id}`}
+                    name={`question-${question.id}`}
+                    value={option.text}
+                    checked={selectedOptions[question.id] === option.text}
+                    onChange={() =>
+                      handleOptionChange(question.id, option.text)
+                    }
+                    className="mr-2"
+                  />
+                  <label
+                    htmlFor={`option-${question.id}-${option.id}`}
+                    className="text-white"
+                  >
+                    {option.text}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+        <button
+          onClick={handleSubmit}
+          className="mt-8 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Submit Quiz
+        </button>
+        {submitted && (
+          <div className="mt-8 text-white">
+            <h2>Quiz Results</h2>
+            {questionsData.map((question) => (
+              <div key={question.id} className="mb-4">
+                <h3>{`Q${question.id}. ${question.text}`}</h3>
+                <p>
+                  Your answer:{" "}
+                  {selectedOptions[question.id] || "No answer selected"}
+                </p>
+                <p>
+                  Correct answer:{" "}
+                  {question.options.find((option) => option.isCorrect)?.text}
+                </p>
+                <p>
+                  {selectedOptions[question.id] ===
+                  question.options.find((option) => option.isCorrect)?.text
+                    ? "Correct"
+                    : "Incorrect"}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default Page;
