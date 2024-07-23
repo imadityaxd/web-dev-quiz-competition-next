@@ -1,19 +1,76 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import questionsData from "@/data/questions.json";
+import questionsData from "@/data/questions";
 
+type SelectedOptions = {
+  [key: number]: string | null;
+};
+
+type Question = {
+  id: number;
+  text: string;
+  code: string;
+  options: { id: number; text: string; isCorrect: boolean }[];
+};
 
 const Page: React.FC = () => {
-  const [selectedOptions, setSelectedOptions] = useState<{
-    [key: number]: string | null;
-  }>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [score, setScore] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
 
-  console.log("selected options: ", selectedOptions);
-  console.log("submitted: ", submitted);
+  // Initialize state with data from local storage if available
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedOptions = localStorage.getItem("selectedOptions");
+      console.log("Loaded from localStorage:", savedOptions); // Debugging
+      if (savedOptions) {
+        try {
+          const parsedOptions = JSON.parse(savedOptions) as SelectedOptions;
+          // console.log("Parsed options:", parsedOptions); // Debugging
+
+          // Process and validate the loaded data
+          const processedOptions: SelectedOptions = Object.fromEntries(
+            Object.entries(parsedOptions).map(([key, value]) => {
+              const numericKey = Number(key);
+              if (isNaN(numericKey)) return [numericKey, null];
+              if (value === "null") return [numericKey, null];
+              if (value === "NaN") return [numericKey, "NaN"];
+              if (value === "undefined") return [numericKey, "undefined"];
+              return [numericKey, value];
+            })
+          );
+
+          setSelectedOptions(processedOptions);
+          console.log("selectedOpt------", selectedOptions);
+          console.log("Processed options:", processedOptions); // Debugging
+        } catch (e) {
+          console.error("Error parsing localStorage data:", e);
+        }
+      } else {
+        console.log("No saved options found in localStorage."); // Debugging
+      }
+    }
+  }, []);
+
+  // Save selected options to local storage whenever they change
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        console.log("Saving to localStorage:", selectedOptions); // Debugging
+        const checkStorage = localStorage.getItem("selectedOptions");
+
+        localStorage.setItem(
+          "selectedOptions",
+          JSON.stringify(selectedOptions)
+        );
+      } catch (e) {
+        console.error("Error saving to localStorage:", e);
+      }
+    }
+  }, [selectedOptions]);
+
   const handleOptionChange = (questionId: number, optionText: string) => {
     setSelectedOptions((prevSelectedOptions) => ({
       ...prevSelectedOptions,
@@ -24,23 +81,31 @@ const Page: React.FC = () => {
   const handleSubmit = () => {
     let calculatedScore = 0;
 
-    questionsData.forEach((question) => {
+    questionsData.forEach((question: Question) => {
       const selectedAnswer = selectedOptions[question.id];
-      const correctAnswer = question.options.find((option) => option.isCorrect)?.text;
-  
+      const correctAnswer = question.options.find(
+        (option) => option.isCorrect
+      )?.text;
+
       if (selectedAnswer === correctAnswer) {
         calculatedScore += 1;
       }
     });
-  
+
     setScore(calculatedScore);
     setSubmitted(true);
+
+    // Clear local storage after form submission if needed
+    if (typeof window !== "undefined") {
+      console.log("Clearing localStorage");
+      localStorage.removeItem("selectedOptions");
+    }
   };
 
   return (
     <div className="min-h-screen bg-black-100 md:px-8 px-4">
       <div className="pt-40">
-        {questionsData.map((question) => (
+        {questionsData.map((question: Question) => (
           <div key={question.id} className="mb-8">
             <h2 className="pb-2 text-white">{`Q${question.id}. ${question.text}`}</h2>
             <SyntaxHighlighter language="javascript" style={dracula}>
@@ -80,8 +145,10 @@ const Page: React.FC = () => {
         {submitted && (
           <div className="mt-8 text-white">
             <h2>Quiz Results</h2>
-            <p>Your score: {score} / {questionsData.length}</p>
-            {questionsData.map((question) => (
+            <p>
+              Your score: {score} / {questionsData.length}
+            </p>
+            {questionsData.map((question: Question) => (
               <div key={question.id} className="mb-4">
                 <h3>{`Q${question.id}. ${question.text}`}</h3>
                 <p>
