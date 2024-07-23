@@ -19,7 +19,7 @@ const TimeUntilCompetition: React.FC = () => {
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
-      const nextCompetitionUTC = getCompetitionTimeUTC(1, 18, 20); // Competition set for Sunday at 21:30 IST
+      const nextCompetitionUTC = getCompetitionTimeUTC(2, 10, 27); // Competition set for Sunday at 21:30 IST
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
       console.log("use Zone: ", timeZone);
       const dateFormat = "eeee, MMMM d, yyyy @ hh:mm:ss a";
