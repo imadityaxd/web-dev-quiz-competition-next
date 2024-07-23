@@ -4,25 +4,16 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import questionsData from "@/data/questions.json";
 
-type Option = {
-  id: number;
-  text: string;
-  isCorrect: boolean;
-};
-
-type Question = {
-  id: number;
-  text: string;
-  code: string;
-  options: Option[];
-};
 
 const Page: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<{
     [key: number]: string | null;
   }>({});
   const [submitted, setSubmitted] = useState(false);
+  const [score, setScore] = useState(0);
 
+  console.log("selected options: ", selectedOptions);
+  console.log("submitted: ", submitted);
   const handleOptionChange = (questionId: number, optionText: string) => {
     setSelectedOptions((prevSelectedOptions) => ({
       ...prevSelectedOptions,
@@ -31,9 +22,19 @@ const Page: React.FC = () => {
   };
 
   const handleSubmit = () => {
+    let calculatedScore = 0;
+
+    questionsData.forEach((question) => {
+      const selectedAnswer = selectedOptions[question.id];
+      const correctAnswer = question.options.find((option) => option.isCorrect)?.text;
+  
+      if (selectedAnswer === correctAnswer) {
+        calculatedScore += 1;
+      }
+    });
+  
+    setScore(calculatedScore);
     setSubmitted(true);
-    // You can handle the submission and result recording here
-    // Example: console.log('Selected Options:', selectedOptions);
   };
 
   return (
@@ -79,6 +80,7 @@ const Page: React.FC = () => {
         {submitted && (
           <div className="mt-8 text-white">
             <h2>Quiz Results</h2>
+            <p>Your score: {score} / {questionsData.length}</p>
             {questionsData.map((question) => (
               <div key={question.id} className="mb-4">
                 <h3>{`Q${question.id}. ${question.text}`}</h3>
