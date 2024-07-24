@@ -1,7 +1,7 @@
-"use client"
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { showToast } from '@/helpers/toastModifier/modifyToast';
 
 interface User {
   userId: string;
@@ -22,7 +22,6 @@ const Leaderboard: React.FC = () => {
         setLeaderboard(response.data.data);
       } catch (err) {
         setError('An error occurred while fetching the leaderboard.');
-        showToast("An error occurred while fetching the leaderboard.", "error")
       } finally {
         setLoading(false);
       }
@@ -32,36 +31,51 @@ const Leaderboard: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center p-4">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+        <div className="text-center p-4">Loading...</div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="text-center p-4 text-red-500">Error: {error}</div>;
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+        <div className="text-center p-4 text-red-500">Error: {error}</div>
+      </div>
+    );
   }
 
   return (
-    <div className="p-4 max-w-4xl mx-auto bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-center">Leaderboard</h2>
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="px-4 py-2 border-b">Rank</th>
-            <th className="px-4 py-2 border-b">Name</th>
-            <th className="px-4 py-2 border-b">Instagram ID</th>
-            <th className="px-4 py-2 border-b">Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboard.map((user, index) => (
-            <tr key={user.userId} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-              <td className="px-4 py-2 border-b text-center">{index + 1}</td>
-              <td className="px-4 py-2 border-b">{user.name}</td>
-              <td className="px-4 py-2 border-b">{user.instaId}</td>
-              <td className="px-4 py-2 border-b text-center">{user.score}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="h-screen p-4 bg-black-100 text-white overflow-auto">
+      <h2 className="text-2xl font-bold mb-8 text-center pt-32 text-purple">Leaderboard</h2>
+      <div className="max-w-4xl mx-auto px-4 py-6 bg-gray-700 rounded-lg shadow-lg">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse table-auto">
+            <thead>
+              <tr className="bg-gray-700">
+                <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-1/12">Rank</th>
+                <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-4/12">Name</th>
+                <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-4/12">Instagram ID</th>
+                <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-1/12">Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboard.map((user, index) => (
+                <tr
+                  key={user.userId}
+                  className={index % 2 === 0 ? 'bg-gray-600' : 'bg-gray-700'}
+                >
+                  <td className="px-4 py-3 border-b border-gray-500 text-center text-purple font-semibold">{index + 1}.</td>
+                  <td className="px-4 py-3 border-b border-gray-500 text-white-100 font-semibold">{user.name}</td>
+                  <td className="px-4 py-3 border-b border-gray-500 font-semibold text-white-100">{user.instaId ? user.instaId : '____'}</td>
+                  <td className="px-4 py-3 border-b border-gray-500 font-semibold text-white-100 text-center">{user.score}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
