@@ -6,6 +6,7 @@ import questionsData from "@/data/questions";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { showToast } from "@/helpers/toastModifier/modifyToast";
+import { FaSpinner } from "react-icons/fa";
 
 const Page = () => {
   const [selectedOptions, setSelectedOptions] = useState<any>(null);
@@ -121,10 +122,13 @@ const Page = () => {
   return (
     <div className="min-h-screen bg-black-100 md:px-8 px-4">
       {loading ? (
-        <p>Loading...</p>
+            <div className="flex flex-col items-center">
+            <FaSpinner className="animate-spin text-6xl mb-4" />
+            <h1 className="text-xl font-semibold">Loading...</h1>
+          </div>
       ) : (
         <p className="text-purple text-center text-3xl pt-40">
-          Welcome, <span className="font-semibold">{userName}</span>!
+          Welcome <span className="font-semibold">{userName}</span>!
         </p>
       )}
 

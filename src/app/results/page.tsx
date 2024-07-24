@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import questionsData from "@/data/questions"; // Adjust import according to your project structure
+import MagicButton from "@/components/ui/MagicButton";
+import Link from "next/link";
 
 type Option = {
   id: number;
@@ -67,6 +69,9 @@ const ResultsPage: React.FC<ResultsPageProps> = ({ searchParams }) => {
             </div>
           ))}
         </div>
+        <Link href="/leaderboard" className="text-center flex justify-center mt-10">
+        <MagicButton title="Go to Leaderboard" icon="" position=""/>
+        </Link>
       </div>
     </div>
   );
