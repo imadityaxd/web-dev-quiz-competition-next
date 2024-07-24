@@ -3,21 +3,22 @@ import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import questionsData from "@/data/questions";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [selectedOptions, setSelectedOptions] = useState<any>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
+  const router = useRouter();
 
   // Initialize state with data from local storage if available
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedOptions = localStorage.getItem("selectedOptions");
-      console.log("Loaded from localStorage:", savedOptions); // Debugging
-      if (savedOptions) {
+      if (savedOptions && !(savedOptions == "null")) {
+        // console.log(typeof savedOptions)
         try {
           const parsedOptions = JSON.parse(savedOptions);
-          // Process and validate the loaded data
           const processedOptions: any = Object.fromEntries(
             Object.entries(parsedOptions).map(([key, value]) => {
               const numericKey = Number(key);
@@ -30,12 +31,9 @@ const Page = () => {
           );
 
           setSelectedOptions(processedOptions);
-          console.log("Processed options:", processedOptions); // Debugging
         } catch (e) {
           console.error("Error parsing localStorage data:", e);
         }
-      } else {
-        console.log("No saved options found in localStorage."); // Debugging
       }
     }
   }, []);
@@ -44,7 +42,6 @@ const Page = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       try {
-        console.log("Saving to localStorage:", selectedOptions); // Debugging
         localStorage.setItem(
           "selectedOptions",
           JSON.stringify(selectedOptions)
@@ -66,7 +63,7 @@ const Page = () => {
     let calculatedScore = 0;
 
     questionsData.forEach((question: any) => {
-      const selectedAnswer = selectedOptions[question.id];
+      const selectedAnswer = selectedOptions?.[question.id];
       const correctAnswer = question.options.find(
         (option: any) => option.isCorrect
       )?.text;
@@ -81,9 +78,17 @@ const Page = () => {
 
     // Clear local storage after form submission if needed
     if (typeof window !== "undefined") {
-      console.log("Clearing localStorage");
       localStorage.removeItem("selectedOptions");
     }
+
+    // Use the updated score in a new route push
+    setTimeout(() => {
+      router.push(
+        `/results?selectedOptions=${encodeURIComponent(
+          JSON.stringify(selectedOptions)
+        )}&score=${calculatedScore}`
+      );
+    }, 0);
   };
 
   return (
@@ -126,33 +131,6 @@ const Page = () => {
         >
           Submit Quiz
         </button>
-        {submitted && (
-          <div className="mt-8 text-white">
-            <h2>Quiz Results</h2>
-            <p>
-              Your score: {score} / {questionsData.length}
-            </p>
-            {questionsData.map((question: any) => (
-              <div key={question.id} className="mb-4">
-                <h3>{`Q${question.id}. ${question.text}`}</h3>
-                <p>
-                  Your answer:{" "}
-                  {selectedOptions[question.id] || "No answer selected"}
-                </p>
-                <p>
-                  Correct answer:{" "}
-                  {question.options.find((option: any) => option.isCorrect)?.text}
-                </p>
-                <p>
-                  {selectedOptions[question.id] ===
-                  question.options.find((option: any) => option.isCorrect)?.text
-                    ? "Correct"
-                    : "Incorrect"}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
