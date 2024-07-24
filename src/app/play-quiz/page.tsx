@@ -4,12 +4,33 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import questionsData from "@/data/questions";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { showToast } from "@/helpers/toastModifier/modifyToast";
 
 const Page = () => {
   const [selectedOptions, setSelectedOptions] = useState<any>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
+  const [userName, setUserName] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const response = await axios.get("/api/getuser");
+        console.log(response);
+        setUserName(response.data.data);
+      } catch (error) {
+        showToast("Failed to fetch user", "error");
+        console.error("Error fetching user data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserName();
+  }, []);
 
   // Initialize state with data from local storage if available
   useEffect(() => {
@@ -93,7 +114,15 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-black-100 md:px-8 px-4">
-      <div className="pt-40">
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <p className="text-purple text-center text-3xl pt-40">
+          Welcome, <span className="font-semibold">{userName}</span>!
+        </p>
+      )}
+
+      <div className="pt-20">
         {questionsData.map((question: any) => (
           <div key={question.id} className="mb-8">
             <h2 className="pb-2 text-white">{`Q${question.id}. ${question.text}`}</h2>
