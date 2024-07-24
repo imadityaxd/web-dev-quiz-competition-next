@@ -4,19 +4,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import questionsData from "@/data/questions";
 
-type SelectedOptions = {
-  [key: number]: string | null;
-};
-
-type Question = {
-  id: number;
-  text: string;
-  code: string;
-  options: { id: number; text: string; isCorrect: boolean }[];
-};
-
-const Page: React.FC = () => {
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
+const Page = () => {
+  const [selectedOptions, setSelectedOptions] = useState<any>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
 
@@ -27,11 +16,9 @@ const Page: React.FC = () => {
       console.log("Loaded from localStorage:", savedOptions); // Debugging
       if (savedOptions) {
         try {
-          const parsedOptions = JSON.parse(savedOptions) as SelectedOptions;
-          // console.log("Parsed options:", parsedOptions); // Debugging
-
+          const parsedOptions = JSON.parse(savedOptions);
           // Process and validate the loaded data
-          const processedOptions: SelectedOptions = Object.fromEntries(
+          const processedOptions: any = Object.fromEntries(
             Object.entries(parsedOptions).map(([key, value]) => {
               const numericKey = Number(key);
               if (isNaN(numericKey)) return [numericKey, null];
@@ -43,7 +30,6 @@ const Page: React.FC = () => {
           );
 
           setSelectedOptions(processedOptions);
-          console.log("selectedOpt------", selectedOptions);
           console.log("Processed options:", processedOptions); // Debugging
         } catch (e) {
           console.error("Error parsing localStorage data:", e);
@@ -59,8 +45,6 @@ const Page: React.FC = () => {
     if (typeof window !== "undefined") {
       try {
         console.log("Saving to localStorage:", selectedOptions); // Debugging
-        const checkStorage = localStorage.getItem("selectedOptions");
-
         localStorage.setItem(
           "selectedOptions",
           JSON.stringify(selectedOptions)
@@ -72,7 +56,7 @@ const Page: React.FC = () => {
   }, [selectedOptions]);
 
   const handleOptionChange = (questionId: number, optionText: string) => {
-    setSelectedOptions((prevSelectedOptions) => ({
+    setSelectedOptions((prevSelectedOptions: any) => ({
       ...prevSelectedOptions,
       [questionId]: optionText,
     }));
@@ -81,10 +65,10 @@ const Page: React.FC = () => {
   const handleSubmit = () => {
     let calculatedScore = 0;
 
-    questionsData.forEach((question: Question) => {
+    questionsData.forEach((question: any) => {
       const selectedAnswer = selectedOptions[question.id];
       const correctAnswer = question.options.find(
-        (option) => option.isCorrect
+        (option: any) => option.isCorrect
       )?.text;
 
       if (selectedAnswer === correctAnswer) {
@@ -105,21 +89,21 @@ const Page: React.FC = () => {
   return (
     <div className="min-h-screen bg-black-100 md:px-8 px-4">
       <div className="pt-40">
-        {questionsData.map((question: Question) => (
+        {questionsData.map((question: any) => (
           <div key={question.id} className="mb-8">
             <h2 className="pb-2 text-white">{`Q${question.id}. ${question.text}`}</h2>
             <SyntaxHighlighter language="javascript" style={dracula}>
               {question.code}
             </SyntaxHighlighter>
             <div className="mt-4">
-              {question.options.map((option) => (
+              {question.options.map((option: any) => (
                 <div key={option.id} className="flex items-center mb-2">
                   <input
                     type="radio"
                     id={`option-${question.id}-${option.id}`}
                     name={`question-${question.id}`}
                     value={option.text}
-                    checked={selectedOptions[question.id] === option.text}
+                    checked={selectedOptions?.[question.id] === option.text}
                     onChange={() =>
                       handleOptionChange(question.id, option.text)
                     }
@@ -148,7 +132,7 @@ const Page: React.FC = () => {
             <p>
               Your score: {score} / {questionsData.length}
             </p>
-            {questionsData.map((question: Question) => (
+            {questionsData.map((question: any) => (
               <div key={question.id} className="mb-4">
                 <h3>{`Q${question.id}. ${question.text}`}</h3>
                 <p>
@@ -157,11 +141,11 @@ const Page: React.FC = () => {
                 </p>
                 <p>
                   Correct answer:{" "}
-                  {question.options.find((option) => option.isCorrect)?.text}
+                  {question.options.find((option: any) => option.isCorrect)?.text}
                 </p>
                 <p>
                   {selectedOptions[question.id] ===
-                  question.options.find((option) => option.isCorrect)?.text
+                  question.options.find((option: any) => option.isCorrect)?.text
                     ? "Correct"
                     : "Incorrect"}
                 </p>
