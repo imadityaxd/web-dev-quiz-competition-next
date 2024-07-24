@@ -80,7 +80,7 @@ const Page = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let calculatedScore = 0;
 
     questionsData.forEach((question: any) => {
@@ -102,14 +102,20 @@ const Page = () => {
       localStorage.removeItem("selectedOptions");
     }
 
-    // Use the updated score in a new route push
-    setTimeout(() => {
-      router.push(
-        `/results?selectedOptions=${encodeURIComponent(
-          JSON.stringify(selectedOptions)
-        )}&score=${calculatedScore}`
-      );
-    }, 0);
+    try {
+      // Redirect to the results page with query parameters
+      await axios.post("/api/score", { score: calculatedScore });
+      setTimeout(() => {
+        router.push(
+          `/results?selectedOptions=${encodeURIComponent(
+            JSON.stringify(selectedOptions)
+          )}&score=${calculatedScore}`
+        );
+      }, 0);
+    } catch (error) {
+      showToast("Error submitting score", "error");
+      console.error("Error submitting score:", error);
+    }
   };
 
   return (

@@ -8,6 +8,27 @@ export async function POST(request: NextRequest) {
 
   try {
     const { name, instaId } = await request.json();
+    if (!name) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "name is required",
+        },
+        { status: 400 }
+      );
+    }
+
+    const existedUser = await UserModel.findOne({ name });
+    if (existedUser) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "user with this name already exists. Please choose the different name",
+        },
+        { status: 409 }
+      );
+    }
 
     const newUser = new UserModel({
       name,
@@ -16,14 +37,25 @@ export async function POST(request: NextRequest) {
 
     await newUser.save();
 
+    const user = await UserModel.findOne({ name });
+    if (!user) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "user not found",
+        },
+        { status: 409 }
+      );
+    }
+
     //create token data
     const tokenData = {
-      name,
-      instaId,
+      id: user._id,
+      name: user.name,
     };
 
     //creating token token
-    const token = await jwt.sign(tokenData, process.env.JWT_TOKEN_SECRET!, {
+    const token = jwt.sign(tokenData, process.env.JWT_TOKEN_SECRET!, {
       expiresIn: "30m",
     });
 

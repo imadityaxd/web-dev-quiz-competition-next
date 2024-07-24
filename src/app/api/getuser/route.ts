@@ -7,11 +7,14 @@ export async function GET(request: NextRequest) {
   try {
     const userName = await getTokenData(request);
 
-    return NextResponse.json({
-      success: true,
-      message: "user found",
-      data: userName,
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        message: "user found",
+        data: userName.name,
+      },
+      { status: 200 }
+    );
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
