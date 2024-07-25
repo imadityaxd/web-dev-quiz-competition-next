@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { showToast } from "@/helpers/toastModifier/modifyToast";
 import { FaSpinner } from "react-icons/fa";
+import ShiftingCountdown from "@/components/Timer";
 
 const Page = () => {
   const [selectedOptions, setSelectedOptions] = useState<any>(null);
@@ -113,26 +114,32 @@ const Page = () => {
           )}&score=${calculatedScore}`
         );
       }, 0);
+      await axios.get("/api/logout");
     } catch (error) {
       showToast("Error submitting score", "error");
       console.error("Error submitting score:", error);
     }
   };
+  const handleTimerEnd = () => {
+    console.log("Timer has ended. Perform actions here.");
+    handleSubmit();
+  };
 
   return (
     <div className="min-h-screen bg-black-100 md:px-8 px-4">
+      <ShiftingCountdown onEnd={handleTimerEnd} />
       {loading ? (
-            <div className="flex flex-col items-center">
-            <FaSpinner className="animate-spin text-6xl mb-4" />
-            <h1 className="text-xl font-semibold">Loading...</h1>
-          </div>
+        <div className="flex flex-col items-center">
+          <FaSpinner className="animate-spin text-6xl mb-4" />
+          <h1 className="text-xl font-semibold">Loading...</h1>
+        </div>
       ) : (
-        <p className="text-purple text-center text-3xl pt-40">
-          Welcome <span className="font-semibold">{userName}</span>!
+        <p className="text-purple text-center text-3xl pt-14">
+          welcome <span className="font-semibold">{userName}</span>
         </p>
       )}
 
-      <div className="pt-20">
+      <div className="pt-10">
         {questionsData.map((question: any) => (
           <div key={question.id} className="mb-8">
             <h2 className="pb-2 text-white">{`Q${question.id}. ${question.text}`}</h2>
