@@ -30,20 +30,23 @@ export default function page() {
               <span className="inline text-2xl text-purple pr-2 font-bold">
                 1.
               </span>
-              Join the quiz on time. Late entries will not be accepted.
+              when the quiz starts you will be able to register yourself and
+              start playing quiz. Also you can give multiply try by registering
+              yourself again before the next competition timer sets.
             </p>
             <p className="font-normal text-base text-white-200 mb-4">
               <span className="inline text-2xl text-purple pr-2 font-bold">
                 2.
               </span>
-              Complete the quiz within the 30-minute time limit.
+              Complete the quiz within the time limit. Else it will be submitted
+              automatically.
             </p>
             <p className="font-normal text-base text-white-200 mb-4">
               <span className="inline text-2xl text-purple pr-2 font-bold">
                 3.
               </span>
-              Leaderboard updated in real-time or shortly after the quiz ends.
-              And you will be able to see your rank.
+              Leaderboard will updated in the real-time. And you will be able to
+              see your rank.
             </p>
             <p className="font-normal text-base text-white-200 mb-4">
               <span className="inline text-2xl text-purple pr-2 font-bold">
@@ -55,7 +58,7 @@ export default function page() {
               <span className="inline text-2xl text-purple pr-2 font-bold">
                 5.
               </span>
-              Cheating or dishonesty results in disqualification.
+              Cheating or dishonesty is not recommended.
             </p>
             <p className="font-normal text-base text-white-200 mb-4">
               <span className="inline text-2xl text-purple pr-2 font-bold">

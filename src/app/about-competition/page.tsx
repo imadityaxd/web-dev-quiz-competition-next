@@ -17,13 +17,20 @@ export default function About() {
         </h2>
         <CardHoverEffectDemo />
         <Link href="/start-quiz">
-        <MagicButton
-          title="Go To Quiz Page"
-          icon={<FaTrophy />}
-          position="right"
-        />
-      </Link>
+          <MagicButton
+            title="Go To Quiz Page"
+            icon={<FaTrophy />}
+            position="right"
+          />
+        </Link>
       </div>
+      <Link href="/dashboard">
+          <MagicButton
+            title="Go To last updated Dashboard"
+            icon={""}
+            position="right"
+          />
+        </Link>
     </div>
   );
 }
