@@ -13,7 +13,6 @@ export async function GET(req: NextRequest) {
     // Fetch the top 10 scores, sorted in descending order
     const topScores = await ScoreModel.find()
       .sort({ score: -1 })
-      .limit(10)
       .populate<{ userId: User }>("userId");
     console.log("topScores: ", topScores);
 

@@ -5,6 +5,7 @@ import MagicButton from "@/components/ui/MagicButton";
 import Link from "next/link";
 import React from "react";
 import { FaTrophy } from "react-icons/fa";
+import { MdDashboard } from 'react-icons/md';
 
 export default function About() {
   return (
@@ -24,10 +25,10 @@ export default function About() {
           />
         </Link>
       </div>
-      <Link href="/dashboard">
+      <Link href="/leaderboard">
           <MagicButton
-            title="Go To last updated Dashboard"
-            icon={""}
+            title="Go To last updated leaderboard"
+            icon={<MdDashboard/>}
             position="right"
           />
         </Link>
