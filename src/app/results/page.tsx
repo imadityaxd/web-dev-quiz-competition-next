@@ -1,7 +1,7 @@
 // app/results/page.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -32,6 +32,11 @@ type ResultsPageProps = {
 const ResultsPage: React.FC<ResultsPageProps> = ({ searchParams }) => {
   const selectedOptions = JSON.parse(searchParams.selectedOptions || "{}") as Record<number, string>;
   const score = parseInt(searchParams.score, 10);
+
+  useEffect(() => {
+    // Store the score in localStorage
+    localStorage.setItem("latestScore", JSON.stringify({ selectedOptions, score }));
+  }, [selectedOptions, score]);
 
   return (
     <div className="min-h-screen bg-black-100 text-gray-100 py-36 md:px-8 lg:px-12">

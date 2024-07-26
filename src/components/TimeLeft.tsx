@@ -19,7 +19,7 @@ const TimeUntilCompetition: React.FC = () => {
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
-      const nextCompetitionUTC = getCompetitionTimeUTC(5, 11, 30); // Competition set for Sunday at 21:30 IST
+      const nextCompetitionUTC = getCompetitionTimeUTC(5, 15, 31); // Competition set for Sunday at 21:30 IST
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
       console.log("use Zone: ", timeZone);
       const dateFormat = "eeee, MMMM d, yyyy @ hh:mm:ss a";
@@ -69,7 +69,7 @@ const TimeUntilCompetition: React.FC = () => {
   }, [router, setTimerEnded, timerEnded]);
 
   return (
-    <div className="bg-black-100 flex justify-center items-center py-16 p-4 text-center">
+    <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
       {timerEnded ? (
         <Link href="/register" className="w-full">
           <MagicButton title="Quick Registration" icon="" position="" />

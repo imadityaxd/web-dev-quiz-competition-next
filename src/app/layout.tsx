@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} ${play_fair_display_init.variable} ${kanit.variable}`}
+        className={`${inter.className} ${play_fair_display_init.variable} ${kanit.variable} bg-black-100`}
       >
         <ThemeProvider
           attribute="class"

@@ -25,7 +25,7 @@ export default function About() {
           />
         </Link>
       </div>
-      <Link href="/leaderboard">
+      <Link href="/leaderboard" className="mt-6">
           <MagicButton
             title="Go To last updated leaderboard"
             icon={<MdDashboard/>}

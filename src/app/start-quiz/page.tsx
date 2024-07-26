@@ -5,6 +5,9 @@ import Image from "next/image";
 import { cn } from "@/utils/cn";
 import { FaCheckCircle } from "react-icons/fa";
 import TimeUntilCompetition from "@/components/TimeLeft";
+import Link from "next/link";
+import MagicButton from "@/components/ui/MagicButton";
+import { MdDashboard } from "react-icons/md";
 
 export default function page() {
   return (
@@ -77,8 +80,16 @@ export default function page() {
           </div>
         </BackgroundGradient>
       </div>
-      <div className="">
+
+      <div className="flex justify-center items-center flex-wrap pb-10">
         <TimeUntilCompetition />
+        <Link href="/leaderboard">
+          <MagicButton
+            title="Go To last updated leaderboard"
+            icon={<MdDashboard />}
+            position="right"
+          />
+        </Link>
       </div>
     </>
   );
