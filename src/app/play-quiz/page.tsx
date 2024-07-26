@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import questionsData from "@/data/questions";
@@ -16,6 +16,14 @@ const Page = () => {
   const [userName, setUserName] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
+
+  // Ref to store the latest selectedOptions state
+  const selectedOptionsRef = useRef<any>(selectedOptions);
+
+  // Update the ref whenever selectedOptions changes
+  useEffect(() => {
+    selectedOptionsRef.current = selectedOptions;
+  }, [selectedOptions]);
 
   useEffect(() => {
     const fetchUserName = async () => {
@@ -39,7 +47,6 @@ const Page = () => {
     if (typeof window !== "undefined") {
       const savedOptions = localStorage.getItem("selectedOptions");
       if (savedOptions && !(savedOptions == "null")) {
-        // console.log(typeof savedOptions)
         try {
           const parsedOptions = JSON.parse(savedOptions);
           const processedOptions: any = Object.fromEntries(
@@ -85,8 +92,11 @@ const Page = () => {
   const handleSubmit = async () => {
     let calculatedScore = 0;
 
+    // Use ref to get the latest selectedOptions
+    const currentSelectedOptions = selectedOptionsRef.current;
+
     questionsData.forEach((question: any) => {
-      const selectedAnswer = selectedOptions?.[question.id];
+      const selectedAnswer = currentSelectedOptions?.[question.id];
       const correctAnswer = question.options.find(
         (option: any) => option.isCorrect
       )?.text;
@@ -110,7 +120,7 @@ const Page = () => {
       setTimeout(() => {
         router.push(
           `/results?selectedOptions=${encodeURIComponent(
-            JSON.stringify(selectedOptions)
+            JSON.stringify(currentSelectedOptions)
           )}&score=${calculatedScore}`
         );
       }, 0);
@@ -120,6 +130,7 @@ const Page = () => {
       console.error("Error submitting score:", error);
     }
   };
+
   const handleTimerEnd = () => {
     console.log("Timer has ended. Perform actions here.");
     handleSubmit();
