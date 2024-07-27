@@ -83,13 +83,13 @@ export default function page() {
 
       <div className="flex justify-center items-center flex-wrap pb-10">
         <TimeUntilCompetition />
-        <Link href="/leaderboard">
+        {/* <Link href="/leaderboard">
           <MagicButton
             title="Go To last updated leaderboard"
             icon={<MdDashboard />}
             position="right"
           />
-        </Link>
+        </Link> */}
       </div>
     </>
   );

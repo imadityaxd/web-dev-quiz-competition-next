@@ -20,8 +20,9 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "web dev quiz",
-  description: "javascript output based questions quizzes",
+  title: "JavaScript Quiz Challenge - Test Your Skills and Compete with Others",
+  description:
+    "Join the JavaScript and web dev Quiz Challenge to test your skills with output-based questions. Compete in weekly quizzes, see your rank on the leaderboard, and enhance your JavaScript knowledge. Perfect for developers looking to sharpen their coding skills!",
 };
 
 export default function RootLayout({

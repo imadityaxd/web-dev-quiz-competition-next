@@ -1,3 +1,4 @@
+import dbConnect from "@/lib/dbConnect";
 import ScoreModel from "@/model/Score";
 import { User } from "@/model/User";
 import mongoose from "mongoose";
@@ -9,6 +10,7 @@ interface PopulatedScore extends Omit<mongoose.Document, "id"> {
 }
 
 export async function GET(req: NextRequest) {
+  await dbConnect();
   try {
     // Fetch the top 10 scores, sorted in descending order
     const topScores = await ScoreModel.find()
