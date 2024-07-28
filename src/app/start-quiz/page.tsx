@@ -3,11 +3,7 @@ import React from "react";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
-import { FaCheckCircle } from "react-icons/fa";
 import TimeUntilCompetition from "@/components/TimeLeft";
-import Link from "next/link";
-import MagicButton from "@/components/ui/MagicButton";
-import { MdDashboard } from "react-icons/md";
 
 export default function page() {
   return (
