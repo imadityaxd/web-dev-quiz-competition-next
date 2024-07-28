@@ -48,7 +48,6 @@ export default function Register() {
     setLoading(true);
     try {
       const response = await axios.post("/api/register", data);
-      console.log("res: ", response.data.message);
       showToast(response.data.message, "success");
       router.push("/play-quiz");
     } catch (error: any) {

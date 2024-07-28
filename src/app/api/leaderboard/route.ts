@@ -16,7 +16,6 @@ export async function GET(req: NextRequest) {
     const topScores = await ScoreModel.find()
       .sort({ score: -1 })
       .populate<{ userId: User }>("userId");
-    console.log("topScores: ", topScores);
 
     // Format the leaderboard data
     const leaderboard = (topScores as PopulatedScore[]).map((score) => ({

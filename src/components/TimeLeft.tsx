@@ -22,7 +22,7 @@ const TimeUntilCompetition: React.FC = () => {
       let nextCompetitionUTC = getCompetitionTimeUTC(0, 11, 30); // Competition set for Sunday at 21:30 IST
 
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
-      console.log("use Zone: ", timeZone);
+      // console.log("use Zone: ", timeZone);
       const dateFormat = "eeee, MMMM d, yyyy @ hh:mm:ss a";
 
       // Set the local competition time
@@ -31,8 +31,8 @@ const TimeUntilCompetition: React.FC = () => {
         timeZone,
         dateFormat
       );
-      console.log("cal time", localTime);
-      console.log(`Competition starts at: ${localTime}`);
+      // console.log("cal time", localTime);
+      // console.log(`Competition starts at: ${localTime}`);
 
       setLocalCompetitionTime(`Competition starts at: ${localTime}`);
 

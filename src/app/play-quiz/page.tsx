@@ -29,7 +29,6 @@ const Page = () => {
     const fetchUserName = async () => {
       try {
         const response = await axios.get("/api/getuser");
-        console.log(response);
         setUserName(response.data.data);
       } catch (error) {
         showToast("Failed to fetch user", "error");
@@ -132,7 +131,7 @@ const Page = () => {
   };
 
   const handleTimerEnd = () => {
-    console.log("Timer has ended. Perform actions here.");
+    // console.log("Timer has ended. Perform actions here.");
     handleSubmit();
   };
 

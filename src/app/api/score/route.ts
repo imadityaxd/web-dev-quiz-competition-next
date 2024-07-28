@@ -11,8 +11,6 @@ export async function POST(req: NextRequest) {
   try {
     const { id } = getTokenData(req);
     const { score } = await req.json();
-    console.log("userId: ", id);
-    console.log("score: ", score);
 
     if (!id || score === undefined) {
       return NextResponse.json(
