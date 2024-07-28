@@ -6,7 +6,7 @@ import { addHours, format as formatDate } from 'date-fns';
 export const getCompetitionTimeUTC = (day: number, hour: number, minute: number): Date => {
   const now = new Date();
   const competitionTimeInIST = new Date(now);
-  competitionTimeInIST.setUTCDate(competitionTimeInIST.getUTCDate() + ((7 + day - competitionTimeInIST.getUTCDay()) % 7));
+  // competitionTimeInIST.setUTCDate(competitionTimeInIST.getUTCDate() + ((7 + day - competitionTimeInIST.getUTCDay()) % 7));
   competitionTimeInIST.setUTCHours(hour);
   competitionTimeInIST.setUTCMinutes(minute);
   competitionTimeInIST.setUTCSeconds(0);

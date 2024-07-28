@@ -20,9 +20,28 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "JavaScript Quiz Challenge - Test Your Skills and Compete with Others",
+  title: "JavaScript Quizzes - Test Your Skills and Compete with Others",
   description:
     "Join the JavaScript and web dev Quiz Challenge to test your skills with output-based questions. Compete in weekly quizzes, see your rank on the leaderboard, and enhance your JavaScript knowledge. Perfect for developers looking to sharpen their coding skills!",
+  twitter: {
+    card: "summary_large_image",
+  },
+  openGraph: {
+    title: "JavaScript Quizzes - Test Your Skills and Compete with Others",
+    description:
+      "Join the JavaScript and web dev Quiz Challenge to test your skills with output-based questions. Compete in weekly quizzes, see your rank on the leaderboard, and enhance your JavaScript knowledge. Perfect for developers looking to sharpen their coding skills!",
+    url: "https://www.webdevquiz.online",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "https://www.webdevquiz.online/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "JavaScript Quizzes - Test Your Skills and Compete with Others",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

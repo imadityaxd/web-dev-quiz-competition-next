@@ -80,7 +80,6 @@ export default function page() {
           </div>
         </BackgroundGradient>
       </div>
-
       <div className="flex justify-center items-center flex-wrap pb-10">
         <TimeUntilCompetition />
         {/* <Link href="/leaderboard">

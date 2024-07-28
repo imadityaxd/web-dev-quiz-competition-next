@@ -1,8 +1,8 @@
 import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-// const INITIAL_TIME = 15 * 60 * 1000; // 15 minutes in milliseconds
-const INITIAL_TIME = 1 * 60 * 500; // testiing
+const INITIAL_TIME = 15 * 60 * 1000; // 15 minutes in milliseconds
+// const INITIAL_TIME = 1 * 60 * 500; // testiing
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;

@@ -19,7 +19,8 @@ const TimeUntilCompetition: React.FC = () => {
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
-      const nextCompetitionUTC = getCompetitionTimeUTC(6, 16, 1); // Competition set for Sunday at 21:30 IST
+      let nextCompetitionUTC = getCompetitionTimeUTC(0, 11, 30); // Competition set for Sunday at 21:30 IST
+
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
       console.log("use Zone: ", timeZone);
       const dateFormat = "eeee, MMMM d, yyyy @ hh:mm:ss a";
@@ -41,7 +42,6 @@ const TimeUntilCompetition: React.FC = () => {
         if (!timerEnded) {
           setTimeLeft("The competition has started!");
           setTimerEnded(true);
-          // router.push("/register");
         }
         return;
       }
@@ -80,16 +80,6 @@ const TimeUntilCompetition: React.FC = () => {
           <div>{timeLeft}</div>
         </div>
       )}
-      {/* {false ? (
-        <Link href="/register" className="w-full">
-          <MagicButton title="Quick Registration" icon="" position="" />
-        </Link>
-      ) : (
-        <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
-          
-          <div>we will schedule next competition soon. Good Luck!</div>
-        </div>
-      )} */}
     </div>
   );
 };

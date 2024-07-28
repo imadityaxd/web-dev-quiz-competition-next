@@ -2,10 +2,36 @@ import { BackgroundBoxesDemo } from "@/components/BackgroundBoxes";
 import { SparklesPreview } from "@/components/Spark";
 import { CardHoverEffectDemo } from "@/components/TopicsToPrepare";
 import MagicButton from "@/components/ui/MagicButton";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
 import { FaTrophy } from "react-icons/fa";
-import { MdDashboard } from 'react-icons/md';
+
+export const metadata: Metadata = {
+  title: "About JavaScript Quiz Competition - Test Your Skills",
+  description:
+    "Learn about the JavaScript output-based question competition. Compete in our weekly and daily quizzes, improve your skills, and see how you rank among other developers on the leaderboard.",
+  twitter: {
+    card: "summary_large_image",
+  },
+  openGraph: {
+    title: "About JavaScript Quiz Competition - Test Your Skills",
+    description:
+      "Learn about the JavaScript output-based question competition. Compete in our weekly or daily quizzes, improve your skills, and see how you rank among other developers on the leaderboard.",
+    url: "https://www.webdevquiz.online/about-competition",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "https://www.webdevquiz.online/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "About JavaScript Quiz Competition - Test Your Skills",
+      },
+    ],
+  },
+};
+
 
 export default function About() {
   return (

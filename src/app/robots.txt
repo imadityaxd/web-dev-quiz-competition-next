@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /api/
+Disallow: /play-quiz
+Disallow: /register
+Disallow: /results
+Allow: /
+
+Sitemap: https://www.webdevquiz.online/sitemap.xml
