@@ -17,9 +17,10 @@ export default function page() {
           <Image
             src={`/trophy.png`}
             alt="jordans"
-            height="150"
-            width="150"
-            className="object-contain"
+            height={150}
+            width={150}
+            priority
+            className="object-contain h-auto w-auto"
           />
           <h1 className=" text-purple text-3xl md:text-5xl border-b border-b-purple pt-4 mb-4">
             Rules

@@ -57,6 +57,7 @@ const useTimer = (unit: "Minute" | "Second", onEnd: () => void) => {
     intervalRef.current = setInterval(handleCountdown, 1000);
 
     return () => clearInterval(intervalRef.current || undefined);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCountdown = async () => {
