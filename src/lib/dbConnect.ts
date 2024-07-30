@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// Define a connection object to track the connection state
 type ConnectionObject = {
   isConnected?: number;
 };
@@ -15,8 +16,9 @@ async function dbConnect(): Promise<void> {
 
   try {
     // Attempt to connect to the database
-    const db = await mongoose.connect(process.env.MONGO_URI || '', {});
+    const db = await mongoose.connect(process.env.MONGO_URI || '');
 
+    // Save the connection state
     connection.isConnected = db.connections[0].readyState;
 
     console.log('Database connected successfully');
