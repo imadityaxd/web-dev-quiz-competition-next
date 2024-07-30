@@ -28,10 +28,11 @@ const Leaderboard: React.FC = () => {
       try {
         const response = await axios.get("/api/leaderboard");
         setLeaderboard(response.data.data);
-        // console.log(response.data.data)
+        console.log("leaderboard: ", response.data.data);
       } catch (err) {
         setError("An error occurred while fetching the leaderboard.");
         showToast("An error occurred while fetching the leaderboard.", "error");
+        console.log("error: ", err);
       } finally {
         setLoading(false);
       }
@@ -124,10 +125,9 @@ const Leaderboard: React.FC = () => {
         </div>
       </div>
       <div className="text-center">
-      <Link href="/start-quiz" className="mt-14 text-center">
-        <MagicButton title="Play-Again" icon={""} position="right" />
-      </Link>
-
+        <Link href="/start-quiz" className="mt-14 text-center">
+          <MagicButton title="Play-Again" icon={""} position="right" />
+        </Link>
       </div>
     </>
   );
