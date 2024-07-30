@@ -8,6 +8,7 @@ import axios from "axios";
 import { showToast } from "@/helpers/toastModifier/modifyToast";
 import { FaSpinner } from "react-icons/fa";
 import ShiftingCountdown from "@/components/Timer";
+import { LuLoader2 } from "react-icons/lu";
 
 const Page = () => {
   const [selectedOptions, setSelectedOptions] = useState<any>(null);
@@ -15,6 +16,7 @@ const Page = () => {
   const [score, setScore] = useState<number>(0);
   const [userName, setUserName] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [loadingTwo, setLoadingTwo] = useState<boolean>(false);
   const router = useRouter();
 
   // Ref to store the latest selectedOptions state
@@ -89,6 +91,7 @@ const Page = () => {
   };
 
   const handleSubmit = async () => {
+    setLoadingTwo(true);
     let calculatedScore = 0;
 
     // Use ref to get the latest selectedOptions
@@ -127,6 +130,8 @@ const Page = () => {
     } catch (error) {
       showToast("Error submitting score", "error");
       console.error("Error submitting score:", error);
+    } finally {
+      setLoadingTwo(false);
     }
   };
 
@@ -183,9 +188,19 @@ const Page = () => {
         ))}
         <button
           onClick={handleSubmit}
-          className="mt-8 px-4 py-2 bg-blue-500 text-white rounded"
+          className={`mt-8 px-4 py-2 bg-blue-500 text-white rounded ${
+            loadingTwo && "bg-gray-400 cursor-not-allowed"
+          }`}
+          disabled={loadingTwo}
         >
-          Submit Quiz
+          {loadingTwo ? (
+            <div className="flex items-center justify-center">
+              <LuLoader2 className="animate-spin text-white mr-2" size={24} />
+              <span>Loading...</span>
+            </div>
+          ) : (
+            "Submit Quiz"
+          )}
         </button>
       </div>
     </div>

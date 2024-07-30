@@ -28,6 +28,7 @@ const Leaderboard: React.FC = () => {
       try {
         const response = await axios.get("/api/leaderboard");
         setLeaderboard(response.data.data);
+        // console.log(response.data.data)
       } catch (err) {
         setError("An error occurred while fetching the leaderboard.");
         showToast("An error occurred while fetching the leaderboard.", "error");
@@ -100,7 +101,7 @@ const Leaderboard: React.FC = () => {
               <tbody>
                 {leaderboard.map((user, index) => (
                   <tr
-                    key={user.userId}
+                    key={index}
                     className={index % 2 === 0 ? "bg-gray-600" : "bg-gray-700"}
                   >
                     <td className="px-4 py-3 border-b border-gray-500 text-center text-purple font-semibold">

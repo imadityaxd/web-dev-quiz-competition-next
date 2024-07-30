@@ -16,13 +16,14 @@ export async function GET(req: NextRequest) {
     const topScores = await ScoreModel.find()
       .sort({ score: -1 })
       .populate<{ userId: User }>("userId");
+    console.log("scores :", topScores);
 
     // Format the leaderboard data
     const leaderboard = (topScores as PopulatedScore[]).map((score) => ({
-      userId: score.userId._id.toString(),
-      name: score.userId.name,
-      instaId: score.userId?.instaId,
-      score: score.score,
+      userId: score?.userId?._id.toString(),
+      name: score?.userId?.name,
+      instaId: score?.userId?.instaId,
+      score: score?.score,
     }));
 
     return NextResponse.json(

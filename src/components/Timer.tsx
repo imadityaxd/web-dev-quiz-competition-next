@@ -27,7 +27,11 @@ const ShiftingCountdown: React.FC<ShiftingCountdownProps> = ({ onEnd }) => {
   );
 };
 
-const CountdownItem: React.FC<CountdownItemProps & { onEnd: () => void }> = ({ unit, text, onEnd }) => {
+const CountdownItem: React.FC<CountdownItemProps & { onEnd: () => void }> = ({
+  unit,
+  text,
+  onEnd,
+}) => {
   const { ref, time } = useTimer(unit, onEnd);
 
   return (
@@ -57,7 +61,7 @@ const useTimer = (unit: "Minute" | "Second", onEnd: () => void) => {
     intervalRef.current = setInterval(handleCountdown, 1000);
 
     return () => clearInterval(intervalRef.current || undefined);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCountdown = async () => {
@@ -90,11 +94,11 @@ const useTimer = (unit: "Minute" | "Second", onEnd: () => void) => {
       setTime(newTime);
 
       // Enter animation for seconds
-      await animate(
-        ref.current,
-        { y: ["50%", "0%"], opacity: [0, 1] },
-        { duration: 0.35 }
-      );
+      // await animate(
+      //   ref.current,
+      //   { y: ["50%", "0%"], opacity: [0, 1] },
+      //   { duration: 0.35 }
+      // );
     } else if (unit === "Minute" && newTime !== time) {
       // Update time without animation for minutes
       setTime(newTime);
