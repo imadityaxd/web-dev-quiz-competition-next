@@ -28,6 +28,7 @@ const Leaderboard: React.FC = () => {
       try {
         const response = await axios.get("/api/leaderboard");
         setLeaderboard(response.data.data);
+        console.log("response: ", response);
         console.log("leaderboard: ", response.data.data);
       } catch (err) {
         setError("An error occurred while fetching the leaderboard.");
