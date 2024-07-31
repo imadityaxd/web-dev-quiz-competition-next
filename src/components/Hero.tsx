@@ -34,7 +34,7 @@ export default function Hero() {
           <TextGenerateEffect
             className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl"
             words="javaScript output based questions quizz competition starts
-            everyday at 6:00 pm - 12:00 Pm (IST)."
+            everyday at 7:00 AM - 11:59 PM (IST)."
           ></TextGenerateEffect>
           <Link href="/about-competition">
             <MagicButton
