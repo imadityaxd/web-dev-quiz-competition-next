@@ -116,6 +116,11 @@ const Page = () => {
       localStorage.removeItem("selectedOptions");
     }
 
+    // Clear local storage after form submission if needed
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("endTime");
+    }
+
     try {
       // Redirect to the results page with query parameters
       await axios.post("/api/score", { score: calculatedScore });
