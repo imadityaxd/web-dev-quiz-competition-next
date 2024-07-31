@@ -2,7 +2,7 @@ import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const INITIAL_TIME = 15 * 60 * 1000; // 15 minutes in milliseconds
-// const INITIAL_TIME = 1 * 60 * 500; // testiing
+// const INITIAL_TIME = 1 * 60 * 500; // testing
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
@@ -54,24 +54,33 @@ const CountdownItem: React.FC<CountdownItemProps & { onEnd: () => void }> = ({
 const useTimer = (unit: "Minute" | "Second", onEnd: () => void) => {
   const [ref, animate] = useAnimate();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const endTimeRef = useRef<number>(Date.now() + INITIAL_TIME);
   const [time, setTime] = useState<number>(0);
 
   useEffect(() => {
-    intervalRef.current = setInterval(handleCountdown, 1000);
+    const savedEndTime = localStorage.getItem("endTime");
+    const endTime = savedEndTime
+      ? parseInt(savedEndTime, 10)
+      : Date.now() + INITIAL_TIME;
+
+    if (!savedEndTime) {
+      localStorage.setItem("endTime", endTime.toString());
+    }
+
+    intervalRef.current = setInterval(() => handleCountdown(endTime), 1000);
 
     return () => clearInterval(intervalRef.current || undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleCountdown = async () => {
+  const handleCountdown = async (endTime: number) => {
     const now = Date.now();
-    const distance = endTimeRef.current - now;
+    const distance = endTime - now;
 
     if (distance <= 0) {
       clearInterval(intervalRef.current!);
       setTime(0);
-      onEnd(); // Call the onEnd callback here
+      onEnd();
+      localStorage.removeItem("endTime");
       return;
     }
 
@@ -84,7 +93,6 @@ const useTimer = (unit: "Minute" | "Second", onEnd: () => void) => {
     }
 
     if (unit === "Second" && newTime !== time) {
-      // Exit animation for seconds
       await animate(
         ref.current,
         { y: ["0%", "-50%"], opacity: [1, 0] },
@@ -100,7 +108,6 @@ const useTimer = (unit: "Minute" | "Second", onEnd: () => void) => {
       //   { duration: 0.35 }
       // );
     } else if (unit === "Minute" && newTime !== time) {
-      // Update time without animation for minutes
       setTime(newTime);
     }
   };

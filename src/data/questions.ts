@@ -340,10 +340,10 @@ const questionsData = [
 
     `,
     options: [
-      { id: 1, text: "1 1", isCorrect: false },
-      { id: 2, text: "2 2", isCorrect: false },
-      { id: 3, text: "2 1", isCorrect: true },
-      { id: 4, text: "1 2", isCorrect: false },
+      { id: 1, text: "true", isCorrect: false },
+      { id: 2, text: "NaN", isCorrect: false },
+      { id: 3, text: "false", isCorrect: true },
+      { id: 4, text: "Error", isCorrect: false },
     ],
   },
   {
