@@ -1,32 +1,19 @@
-import mongoose, { Document, Schema } from "mongoose";
+// score.model.ts
+import mongoose, { Schema, Document, Model } from "mongoose";
+import UserModel from "./User";
 
-export interface Score extends Document {
+export interface IScore extends Document {
   userId: mongoose.Schema.Types.ObjectId;
   score: number;
   date: Date;
 }
 
-const scoreSchema: Schema<Score> = new Schema(
-  {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    score: {
-      type: Number,
-      required: true,
-    },
-    date: {
-      type: Date,
-      default: Date.now,
-    },
-  },
-  { timestamps: true }
-);
+const scoreSchema = new Schema<IScore>({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  score: { type: Number, required: true },
+  date: { type: Date, required: true },
+}, { timestamps: true });
 
-const ScoreModel =
-  (mongoose.models.Score as mongoose.Model<Score>) ||
-  mongoose.model<Score>("Score", scoreSchema);
+const ScoreModel: Model<IScore> = mongoose.models.Score || mongoose.model<IScore>("Score", scoreSchema);
 
 export default ScoreModel;

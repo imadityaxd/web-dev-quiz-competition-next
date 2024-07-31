@@ -1,21 +1,20 @@
 import dbConnect from "@/lib/dbConnect";
 import ScoreModel from "@/model/Score";
-import { User } from "@/model/User";
+import { IUser } from "@/model/User"; // Ensure correct import
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 interface PopulatedScore extends Omit<mongoose.Document, "id"> {
-  userId: User & { _id: mongoose.Schema.Types.ObjectId };
+  userId: IUser & { _id: mongoose.Schema.Types.ObjectId };
   score: number;
 }
 
 export async function GET(req: NextRequest) {
-  await dbConnect();
+  await dbConnect(); // Ensure connection to the database
   try {
-    // Fetch the top 10 scores, sorted in descending order
     const topScores = await ScoreModel.find()
       .sort({ score: -1 })
-      .populate<{ userId: User }>("userId");
+      .populate<{ userId: IUser }>("userId");
 
     // Format the leaderboard data
     const leaderboard = (topScores as PopulatedScore[]).map((score) => ({
