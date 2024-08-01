@@ -69,30 +69,30 @@ const TimeUntilCompetition: React.FC = () => {
   }, [router, setTimerEnded, timerEnded]);
 
   return (
-    // <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
-    //   {timerEnded ? (
-    //     <Link href="/register" className="w-full">
-    //       <MagicButton title="Quick Registration" icon="" position="" />
-    //     </Link>
-    //   ) : (
-    //     <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
-    //       {localCompetitionTime}
-    //       <div>{timeLeft}</div>
-    //     </div>
-    //   )}
-    // </div>
     <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
-      {false ? (
+      {timerEnded ? (
         <Link href="/register" className="w-full">
           <MagicButton title="Quick Registration" icon="" position="" />
         </Link>
       ) : (
         <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
-          {/* {localCompetitionTime} */}
-          <div>website under maintainance.</div>
+          {localCompetitionTime}
+          <div>{timeLeft}</div>
         </div>
       )}
     </div>
+    // <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
+    //   {false ? (
+    //     <Link href="/register" className="w-full">
+    //       <MagicButton title="Quick Registration" icon="" position="" />
+    //     </Link>
+    //   ) : (
+    //     <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
+    //       {/* {localCompetitionTime} */}
+    //       <div>website under maintainance.</div>
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 

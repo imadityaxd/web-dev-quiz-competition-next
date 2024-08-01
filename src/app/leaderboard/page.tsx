@@ -89,10 +89,10 @@ const Leaderboard: React.FC = () => {
                   <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-1/12">
                     Rank
                   </th>
-                  <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-4/12">
+                  <th className="px-4 py-3 border-b text-purple border-gray-500 text-center w-4/12">
                     Name
                   </th>
-                  <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-4/12">
+                  <th className="px-4 py-3 border-b text-purple border-gray-500 text-center w-4/12">
                     Instagram ID
                   </th>
                   <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-1/12">
