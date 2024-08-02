@@ -26,7 +26,7 @@ const Leaderboard: React.FC = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get("/api/leaderboard");
+        const response = await axios.post("/api/leaderboard");
         setLeaderboard(response.data.data);
         console.log("leaderboard-response-debugging: ", response);
         console.log("leaderboard-data-debugging: ", response.data.data);

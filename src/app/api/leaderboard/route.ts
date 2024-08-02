@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 //   score: number;
 // }
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   await dbConnect(); // Ensure connection to the database
   try {
     const topScores = await UserModel.find().sort({ score: -1 });
