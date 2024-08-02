@@ -1,14 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
-// import ScoreModel from "@/model/Score";
 import UserModel from "@/model/User";
-// import { IUser } from "@/model/User"; // Ensure correct import
-import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
-// interface PopulatedScore extends Omit<mongoose.Document, "id"> {
-//   userId: IUser & { _id: mongoose.Schema.Types.ObjectId };
-//   score: number;
-// }
 
 export async function POST(req: NextRequest) {
   await dbConnect(); // Ensure connection to the database

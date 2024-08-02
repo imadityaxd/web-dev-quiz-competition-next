@@ -1,5 +1,3 @@
-import mongoose from "mongoose";
-// import ScoreModel from "@/model/Score";
 import UserModel from "@/model/User";
 import dbConnect from "@/lib/dbConnect";
 import { getTokenData } from "@/helpers/getTokenData/getData";
@@ -24,7 +22,6 @@ export async function POST(req: NextRequest) {
 
     // Check if user exists
     let user = await UserModel.findById(id);
-    // const userModelLength = (await UserModel.find()).length;
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
@@ -40,7 +37,6 @@ export async function POST(req: NextRequest) {
         success: true,
         message: "Score recorded successfully",
         score: score,
-        // userModelLength,
       },
       { status: 201 }
     );

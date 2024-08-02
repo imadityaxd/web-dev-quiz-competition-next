@@ -28,8 +28,6 @@ const Leaderboard: React.FC = () => {
       try {
         const response = await axios.post("/api/leaderboard");
         setLeaderboard(response.data.data);
-        console.log("leaderboard-response-debugging: ", response);
-        console.log("leaderboard-data-debugging: ", response.data.data);
       } catch (err) {
         setError("An error occurred while fetching the leaderboard.");
         showToast("An error occurred while fetching the leaderboard.", "error");
@@ -60,14 +58,6 @@ const Leaderboard: React.FC = () => {
       </div>
     );
   }
-
-  // if (error) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-  //       <div className="text-center p-4 text-red-500">Error: {error}</div>
-  //     </div>
-  //   );
-  // }
 
   return (
     <>
