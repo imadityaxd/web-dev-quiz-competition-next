@@ -81,7 +81,7 @@ const TimeUntilCompetition: React.FC = () => {
         </div>
       )}
     </div>
-
+    //testing
     // <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
     //   {false ? (
     //     <Link href="/register" className="w-full">
