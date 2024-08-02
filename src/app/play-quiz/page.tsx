@@ -123,7 +123,8 @@ const Page = () => {
 
     try {
       // Redirect to the results page with query parameters
-      await axios.post("/api/score", { score: calculatedScore });
+      const scoreResponse = await axios.post("/api/score", { score: calculatedScore });
+      console.log("score res: ",scoreResponse);
       setTimeout(() => {
         router.push(
           `/results?selectedOptions=${encodeURIComponent(

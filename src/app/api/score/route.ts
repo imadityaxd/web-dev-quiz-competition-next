@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
 
     // Check if user exists
     let user = await UserModel.findById(id);
+    const userModelLength = (await UserModel.find()).length;
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
@@ -32,15 +33,14 @@ export async function POST(req: NextRequest) {
     }
 
     // Create and save new score entry
-    user.score = score,
-
-    await user.save();
+    (user.score = score), await user.save();
 
     return NextResponse.json(
       {
         success: true,
         message: "Score recorded successfully",
         score: score,
+        userModelLength,
       },
       { status: 201 }
     );
