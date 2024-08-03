@@ -192,7 +192,7 @@ const questionsData = [
       { id: 1, text: "10", isCorrect: false },
       { id: 2, text: "1010", isCorrect: false },
       { id: 3, text: "0", isCorrect: false },
-      { id: 4, text: "100", isCorrect: true },
+      { id: 4, text: "1000", isCorrect: true },
     ],
   },
   {
@@ -263,7 +263,7 @@ const questionsData = [
     `,
     options: [
       { id: 1, text: "[1, 2, 3, 4, 5, 6]", isCorrect: false },
-      { id: 2, text: "123456", isCorrect: true },
+      { id: 2, text: "1,2,34,5,6", isCorrect: true },
       { id: 3, text: "NaN", isCorrect: false },
       { id: 4, text: "Error", isCorrect: false },
     ],
