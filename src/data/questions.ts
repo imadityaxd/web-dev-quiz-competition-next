@@ -3,64 +3,64 @@ const questionsData = [
     id: 1,
     text: "What is the output of the following code?",
     code: `
-    console.log(typeof 42);
+    console.log(1 == '1');
     `,
     options: [
-      { id: 1, text: "number", isCorrect: true },
-      { id: 2, text: "string", isCorrect: false },
-      { id: 3, text: "boolean", isCorrect: false },
-      { id: 4, text: "undefined", isCorrect: false },
+      { id: 1, text: "true", isCorrect: true },
+      { id: 2, text: "false", isCorrect: false },
+      { id: 3, text: "undefined", isCorrect: false },
+      { id: 4, text: "Error", isCorrect: false },
     ],
   },
   {
     id: 2,
     text: "What is the output of the following code?",
     code: `
-    console.log(typeof 'Hello, world!');
+    console.log(1 === '1');
     `,
     options: [
-      { id: 1, text: "number", isCorrect: false },
-      { id: 2, text: "string", isCorrect: true },
-      { id: 3, text: "boolean", isCorrect: false },
-      { id: 4, text: "undefined", isCorrect: false },
+      { id: 1, text: "true", isCorrect: false },
+      { id: 2, text: "false", isCorrect: true },
+      { id: 3, text: "undefined", isCorrect: false },
+      { id: 4, text: "Error", isCorrect: false },
     ],
   },
   {
     id: 3,
     text: "What is the output of the following code?",
     code: `
-    console.log(5 + '5');
+    console.log([] + []);
     `,
     options: [
-      { id: 1, text: "10", isCorrect: false },
-      { id: 2, text: "55", isCorrect: true },
+      { id: 1, text: "[]", isCorrect: false },
+      { id: 2, text: "''", isCorrect: true },
       { id: 3, text: "NaN", isCorrect: false },
-      { id: 4, text: "Error", isCorrect: false },
+      { id: 4, text: "undefined", isCorrect: false },
     ],
   },
   {
     id: 4,
     text: "What is the output of the following code?",
     code: `
-    console.log('5' - 2);
+    console.log([] == []);
     `,
     options: [
-      { id: 1, text: "3", isCorrect: true },
-      { id: 2, text: "52", isCorrect: false },
-      { id: 3, text: "NaN", isCorrect: false },
-      { id: 4, text: "Error", isCorrect: false },
+      { id: 1, text: "true", isCorrect: false },
+      { id: 2, text: "undefined", isCorrect: false },
+      { id: 3, text: "Error", isCorrect: false },
+      { id: 4, text: "false", isCorrect: true },
     ],
   },
   {
     id: 5,
     text: "What is the output of the following code?",
     code: `
-    console.log(Boolean(0));
+    console.log(Boolean('false'));
     `,
     options: [
-      { id: 1, text: "true", isCorrect: false },
-      { id: 2, text: "false", isCorrect: true },
-      { id: 3, text: "0", isCorrect: false },
+      { id: 1, text: "false", isCorrect: false },
+      { id: 2, text: "undefined", isCorrect: false },
+      { id: 3, text: "true", isCorrect: true },
       { id: 4, text: "NaN", isCorrect: false },
     ],
   },
@@ -68,12 +68,12 @@ const questionsData = [
     id: 6,
     text: "What is the output of the following code?",
     code: `
-    let a;
+    let a = null;
     console.log(a);
     `,
     options: [
-      { id: 1, text: "undefined", isCorrect: true },
-      { id: 2, text: "null", isCorrect: false },
+      { id: 1, text: "null", isCorrect: true },
+      { id: 2, text: "undefined", isCorrect: false },
       { id: 3, text: "0", isCorrect: false },
       { id: 4, text: "NaN", isCorrect: false },
     ],
@@ -82,12 +82,12 @@ const questionsData = [
     id: 7,
     text: "What is the output of the following code?",
     code: `
-    console.log(null == undefined);
+    console.log(NaN == NaN);
     `,
     options: [
-      { id: 1, text: "true", isCorrect: true },
-      { id: 2, text: "false", isCorrect: false },
-      { id: 3, text: "null", isCorrect: false },
+      { id: 1, text: "true", isCorrect: false },
+      { id: 2, text: "false", isCorrect: true },
+      { id: 3, text: "NaN", isCorrect: false },
       { id: 4, text: "undefined", isCorrect: false },
     ],
   },
@@ -95,11 +95,11 @@ const questionsData = [
     id: 8,
     text: "What is the output of the following code?",
     code: `
-    console.log('5' * 2);
+    console.log('10' / 2);
     `,
     options: [
-      { id: 1, text: "10", isCorrect: true },
-      { id: 2, text: "55", isCorrect: false },
+      { id: 1, text: "5", isCorrect: true },
+      { id: 2, text: "10", isCorrect: false },
       { id: 3, text: "NaN", isCorrect: false },
       { id: 4, text: "Error", isCorrect: false },
     ],
@@ -108,48 +108,47 @@ const questionsData = [
     id: 9,
     text: "What is the output of the following code?",
     code: `
-    let x = 0;
-    let a = x++;
-    let b = ++x;
-    console.log(a, b, x);
+    let x = 10;
+    let y = x++;
+    console.log(y, x);
     `,
     options: [
-      { id: 1, text: "0 1 0", isCorrect: false },
-      { id: 2, text: "0 2 2", isCorrect: true },
-      { id: 3, text: "1 2 0", isCorrect: false },
-      { id: 4, text: "none", isCorrect: false },
+      { id: 1, text: "11 11", isCorrect: false },
+      { id: 2, text: "9 10", isCorrect: false },
+      { id: 3, text: "10 11", isCorrect: true },
+      { id: 4, text: "10 10", isCorrect: false },
     ],
   },
   {
     id: 10,
     text: "What is the output of the following code?",
     code: `
-    const num = [1, 2, 3];
-    num[6] = 6;
-    console.log(num[5]);
+    const arr = [1, 2, 3];
+    arr[10] = 10;
+    console.log(arr[8]);
     `,
     options: [
       { id: 1, text: "undefined", isCorrect: true },
       { id: 2, text: "empty", isCorrect: false },
-      { id: 3, text: "error", isCorrect: false },
-      { id: 4, text: "null", isCorrect: false },
+      { id: 3, text: "null", isCorrect: false },
+      { id: 4, text: "error", isCorrect: false },
     ],
   },
   {
     id: 11,
     text: "What is the output of the following code?",
     code: `
-    let a = 10;
+    let a = 5;
     let b = (function() {
       return a;
-      a = 20
+      var a = 10;
     })();
     console.log(b);
     `,
     options: [
-      { id: 1, text: "20", isCorrect: false },
-      { id: 2, text: "10", isCorrect: true },
-      { id: 3, text: "undefined", isCorrect: false },
+      { id: 1, text: "5", isCorrect: false },
+      { id: 2, text: "undefined", isCorrect: true },
+      { id: 3, text: "10", isCorrect: false },
       { id: 4, text: "error", isCorrect: false },
     ],
   },
@@ -157,28 +156,29 @@ const questionsData = [
     id: 12,
     text: "What is the output of the following code?",
     code: `
-    const person = { name: 'John' };
-    Object.freeze(person);
-    person.age = 30;
+    const person = { name: 'Alice' };
+    Object.seal(person);
+    person.name = 'Bob';
+    person.age = 25;
     console.log(person);
     `,
     options: [
-      { id: 1, text: "{ name: 'John', age: 30 }", isCorrect: false },
-      { id: 2, text: "{ name: 'John' }", isCorrect: true },
-      { id: 3, text: "{ age: 30 }", isCorrect: false },
-      { id: 4, text: "{}", isCorrect: false },
+      { id: 1, text: "{ name: 'Alice' }", isCorrect: false },
+      { id: 2, text: "{ name: 'Bob' }", isCorrect: true },
+      { id: 3, text: "{ name: 'Bob', age: 25 }", isCorrect: false },
+      { id: 4, text: "{ name: 'Alice', age: 25 }", isCorrect: false },
     ],
   },
   {
     id: 13,
     text: "What is the output of the following code?",
     code: `
-    console.log('1' - - '1');
+    console.log('3' - - '2');
     `,
     options: [
-      { id: 1, text: "0", isCorrect: false },
-      { id: 2, text: "2", isCorrect: true },
-      { id: 3, text: "11", isCorrect: false },
+      { id: 1, text: "1", isCorrect: false },
+      { id: 2, text: "32", isCorrect: false },
+      { id: 3, text: "5", isCorrect: true },
       { id: 4, text: "NaN", isCorrect: false },
     ],
   },
@@ -186,26 +186,26 @@ const questionsData = [
     id: 14,
     text: "What is the output of the following code?",
     code: `
-    console.log('5' + 5 - 5);
+    console.log('10' + 10 - 10);
     `,
     options: [
-      { id: 1, text: "5", isCorrect: false },
-      { id: 2, text: "10", isCorrect: false },
+      { id: 1, text: "10", isCorrect: false },
+      { id: 2, text: "1010", isCorrect: false },
       { id: 3, text: "0", isCorrect: false },
-      { id: 4, text: "50", isCorrect: true },
+      { id: 4, text: "100", isCorrect: true },
     ],
   },
   {
     id: 15,
     text: "What is the output of the following code?",
     code: `
-    console.log(typeof null);
+    console.log(typeof []);
     `,
     options: [
       { id: 1, text: "object", isCorrect: true },
-      { id: 2, text: "null", isCorrect: false },
+      { id: 2, text: "array", isCorrect: false },
       { id: 3, text: "undefined", isCorrect: false },
-      { id: 4, text: "number", isCorrect: false },
+      { id: 4, text: "null", isCorrect: false },
     ],
   },
   {
@@ -214,164 +214,74 @@ const questionsData = [
     code: `
     let a = [1, 2, 3];
     let b = a;
-    b.push(4);
+    b.pop();
     console.log(a);
     `,
     options: [
       { id: 1, text: "[1, 2, 3]", isCorrect: false },
-      { id: 2, text: "[1, 2, 3, 4]", isCorrect: true },
-      { id: 3, text: "[1, 2, 3, undefined]", isCorrect: false },
-      { id: 4, text: "[4, 3, 2, 1]", isCorrect: false },
+      { id: 2, text: "[1, 2]", isCorrect: true },
+      { id: 3, text: "[2, 3]", isCorrect: false },
+      { id: 4, text: "[1, 2, 3, undefined]", isCorrect: false },
     ],
   },
   {
     id: 17,
     text: "What is the output of the following code?",
     code: `
-    let x = 1;
-    function func() {
-      console.log(x);
-      let x = 2;
+    let y = 2;
+    function test() {
+      console.log(y);
+      var y = 3;
     }
-    func();
+    test();
     `,
     options: [
-      { id: 1, text: "1", isCorrect: false },
-      { id: 2, text: "2", isCorrect: false },
-      { id: 3, text: "undefined", isCorrect: false },
-      { id: 4, text: "ReferenceError", isCorrect: true },
+      { id: 1, text: "2", isCorrect: false },
+      { id: 2, text: "3", isCorrect: false },
+      { id: 3, text: "undefined", isCorrect: true },
+      { id: 4, text: "ReferenceError", isCorrect: false },
     ],
   },
   {
     id: 18,
     text: "What is the output of the following code?",
     code: `
-    let obj1 = { a: 1 };
-    let obj2 = { a: 1 };
-    console.log(obj1 === obj2);
+    console.log(null == undefined);
     `,
     options: [
-      { id: 1, text: "true", isCorrect: false },
-      { id: 2, text: "false", isCorrect: true },
+      { id: 1, text: "true", isCorrect: true },
+      { id: 2, text: "false", isCorrect: false },
       { id: 3, text: "undefined", isCorrect: false },
-      { id: 4, text: "null", isCorrect: false },
+      { id: 4, text: "Error", isCorrect: false },
     ],
   },
   {
     id: 19,
     text: "What is the output of the following code?",
     code: `
-    let arr = [1, 2, 3, 4, 5];
-    let result = arr.map(num => {
-      if (num % 2 === 0) {
-        return num * 2;
-      }
-    });
-    console.log(result);
+    console.log([1, 2, 3] + [4, 5, 6]);
     `,
     options: [
-      {
-        id: 1,
-        text: "[undefined, 4, undefined, 8, undefined]",
-        isCorrect: true,
-      },
-      { id: 2, text: "[1, 4, 3, 8, 5]", isCorrect: false },
-      { id: 3, text: "[null, 4, null, 8, null]", isCorrect: false },
-      { id: 4, text: "[2, 4, 6, 8, 10]", isCorrect: false },
+      { id: 1, text: "[1, 2, 3, 4, 5, 6]", isCorrect: false },
+      { id: 2, text: "123456", isCorrect: true },
+      { id: 3, text: "NaN", isCorrect: false },
+      { id: 4, text: "Error", isCorrect: false },
     ],
   },
   {
     id: 20,
     text: "What is the output of the following code?",
     code: `
-    let x = function() {
-      return {
-        message: "Hello"
-      };
-    };
-    console.log(x().message);
+    let a = {};
+    console.log(a.__proto__ === Object.prototype);
     `,
     options: [
-      { id: 1, text: "Hello", isCorrect: true },
-      { id: 2, text: "undefined", isCorrect: false },
-      { id: 3, text: "Error", isCorrect: false },
-      { id: 4, text: "null", isCorrect: false },
-    ],
-  },
-  {
-    id: 21,
-    text: "What is the output of the following code?",
-    code: `
-    let obj = { a: 1, b: 2 };
-    let { a, b, c } = obj;
-    console.log(c);
-    `,
-    options: [
-      { id: 1, text: "undefined", isCorrect: true },
-      { id: 2, text: "1", isCorrect: false },
-      { id: 3, text: "2", isCorrect: false },
-      { id: 4, text: "null", isCorrect: false },
-    ],
-  },
-  {
-    id: 22,
-    text: "What is the output of the following code?",
-    code: `
-    function add(a, b) {
-      return a + b;
-    }
-    console.log(add(2, '3'));
-    `,
-    options: [
-      { id: 1, text: "5", isCorrect: false },
-      { id: 2, text: "23", isCorrect: true },
-      { id: 3, text: "NaN", isCorrect: false },
-      { id: 4, text: "Error", isCorrect: false },
-    ],
-  },
-  {
-    id: 23,
-    text: "What is the output of the following code?",
-    code: `
-    let a = 1;
-    let b = a++;
-    console.log(a, b);
-    `,
-    options: [
-      { id: 1, text: "2 1", isCorrect: true },
-      { id: 2, text: "1 1", isCorrect: false },
-      { id: 3, text: "2 2", isCorrect: false },
-      { id: 4, text: "1 2", isCorrect: false },
-    ],
-  },
-  {
-    id: 24,
-    text: "What is the output of the following code?",
-    code: `
-    console.log(typeof NaN);
-    `,
-    options: [
-      { id: 1, text: "number", isCorrect: true },
-      { id: 2, text: "NaN", isCorrect: false },
+      { id: 1, text: "true", isCorrect: true },
+      { id: 2, text: "false", isCorrect: false },
       { id: 3, text: "undefined", isCorrect: false },
-      { id: 4, text: "object", isCorrect: false },
-    ],
-  },
-  {
-    id: 25,
-    text: "What is the output of the following code?",
-    code: `
-    let a = 1;
-    let b = 2;
-    [a, b] = [b, a];
-    console.log(a, b);
-    `,
-    options: [
-      { id: 1, text: "1 2", isCorrect: false },
-      { id: 2, text: "2 1", isCorrect: true },
-      { id: 3, text: "undefined undefined", isCorrect: false },
-      { id: 4, text: "null null", isCorrect: false },
+      { id: 4, text: "null", isCorrect: false },
     ],
   },
 ];
+
 export default questionsData;
