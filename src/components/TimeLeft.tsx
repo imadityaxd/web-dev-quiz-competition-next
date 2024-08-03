@@ -13,13 +13,13 @@ const TimeUntilCompetition: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [localCompetitionTime, setLocalCompetitionTime] = useState<string>("");
   const { timerEnded, setTimerEnded } = useAuth();
-  // const [timerEnded, setTimerEnded] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
-    const updateTimer = () => {
+    const updateTimer = async () => {
       const now = new Date();
-      let nextCompetitionUTC = getCompetitionTimeUTC(0, 7, 0); // Competition set at everyday at 7 am to 11: 59 pm.
+
+      let nextCompetitionUTC = getCompetitionTimeUTC(0, 17, 20); // Competition set at everyday at 7 am to 11: 59 pm.
 
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
       // console.log("use Zone: ", timeZone);
@@ -32,9 +32,10 @@ const TimeUntilCompetition: React.FC = () => {
         dateFormat
       );
       // console.log("cal time", localTime);
-      // console.log(`Competition starts at: ${localTime}`);
+      console.log(`Competition starts at: ${localTime}`);
 
       setLocalCompetitionTime(`Competition starts at: ${localTime}`);
+      console.log("localcomptime: ", localCompetitionTime);
 
       const diff = nextCompetitionUTC.getTime() - now.getTime();
 
@@ -44,6 +45,9 @@ const TimeUntilCompetition: React.FC = () => {
           setTimerEnded(true);
         }
         return;
+      } else {
+        setTimerEnded(false);
+        console.log("difff: ", diff);
       }
 
       // Calculate days, hours, minutes, and seconds
