@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [timerEnded, setTimerEnded] = useState<boolean | null>(null);
 
   useEffect(() => {
-    console.log("check", timerEnded)
+    // console.log("check", timerEnded)
     if (timerEnded === false) {
       // Make the API call when the timer is false
       axios

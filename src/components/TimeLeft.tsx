@@ -32,10 +32,10 @@ const TimeUntilCompetition: React.FC = () => {
         dateFormat
       );
       // console.log("cal time", localTime);
-      console.log(`Competition starts at: ${localTime}`);
+      // console.log(`Competition starts at: ${localTime}`);
 
       setLocalCompetitionTime(`Competition starts at: ${localTime}`);
-      console.log("localcomptime: ", localCompetitionTime);
+      // console.log("localcomptime: ", localCompetitionTime);
 
       const diff = nextCompetitionUTC.getTime() - now.getTime();
 
@@ -47,7 +47,7 @@ const TimeUntilCompetition: React.FC = () => {
         return;
       } else {
         setTimerEnded(false);
-        console.log("difff: ", diff);
+        // console.log("difff: ", diff);
       }
 
       // Calculate days, hours, minutes, and seconds
