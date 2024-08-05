@@ -1,13 +1,14 @@
 // TimeUntilCompetition.tsx
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import MagicButton from "./ui/MagicButton";
+// import MagicButton from "./ui/MagicButton";
 import Link from "next/link";
 import {
   formatDateInTimeZone,
   getCompetitionTimeUTC,
 } from "@/helpers/setCompetition/competitionHelper";
 import { useAuth } from "@/context/AuthContext";
+import Button from "./Button";
 
 const TimeUntilCompetition: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<string>("");
@@ -76,7 +77,7 @@ const TimeUntilCompetition: React.FC = () => {
     <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
       {timerEnded ? (
         <Link href="/register" className="w-full">
-          <MagicButton title="Play Quiz" icon="" position="" />
+          <Button text="Play Quiz"/>
         </Link>
       ) : (
         <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
@@ -85,19 +86,6 @@ const TimeUntilCompetition: React.FC = () => {
         </div>
       )}
     </div>
-    //testing
-    // <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
-    //   {false ? (
-    //     <Link href="/register" className="w-full">
-    //       <MagicButton title="Quick Registration" icon="" position="" />
-    //     </Link>
-    //   ) : (
-    //     <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
-    //       {/* {localCompetitionTime} */}
-    //       <div>tomorrow moring at 7:00 AM. be ready for next quiz</div>
-    //     </div>
-    //   )}
-    // </div>
   );
 };
 

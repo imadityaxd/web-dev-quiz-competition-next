@@ -1,11 +1,10 @@
 import { BackgroundBoxesDemo } from "@/components/BackgroundBoxes";
+import Button from "@/components/Button";
 import { SparklesPreview } from "@/components/Spark";
 import { CardHoverEffectDemo } from "@/components/TopicsToPrepare";
-import MagicButton from "@/components/ui/MagicButton";
 import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
-import { FaTrophy } from "react-icons/fa";
 
 export const metadata: Metadata = {
   title: "Learn JavaScript With Quiz | About Javascript Quiz Competition",
@@ -32,7 +31,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function About() {
   return (
     <div className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto pb-10 pt-4">
@@ -44,20 +42,9 @@ export default function About() {
         </h2>
         <CardHoverEffectDemo />
         <Link href="/start-quiz">
-          <MagicButton
-            title="Go To Quiz Page"
-            icon={<FaTrophy />}
-            position="right"
-          />
+          <Button text="Go to Quiz Page" />
         </Link>
       </div>
-      {/* <Link href="/leaderboard" className="mt-6">
-          <MagicButton
-            title="Go To last updated leaderboard"
-            icon={<MdDashboard/>}
-            position="right"
-          />
-        </Link> */}
     </div>
   );
 }

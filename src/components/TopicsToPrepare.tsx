@@ -7,7 +7,7 @@ export function CardHoverEffectDemo() {
   return (
     <div className={`${cn(
       "kanit"
-    )} max-w-5xl mx-auto px-8`}>
+    )} max-w-5xl mx-auto px-8 my-8`}>
       <HoverEffect items={projects} />
     </div>
   );

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { BackgroundGradient } from "@/components/ui/background-gradient";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
 import TimeUntilCompetition from "@/components/TimeLeft";
@@ -13,7 +12,7 @@ export default function page() {
           "kanit"
         )} bg-black-100 pt-44 flex justify-center items-center`}
       >
-        <BackgroundGradient className="rounded-[22px] w-[20rem] sm:w-[28rem] md:w-[34rem] lg:w-[46rem] p-4 sm:p-10 bg-black-200 flex flex-col justify-center items-center">
+        <div className="rounded-[22px] w-[20rem] sm:w-[28rem] md:w-[34rem] lg:w-[46rem] p-4 sm:p-10 bg-gray-800 flex flex-col justify-center items-center border border-purple">
           <Image
             src={`/trophy.png`}
             alt="jordans"
@@ -75,17 +74,10 @@ export default function page() {
               (email or Instagram DM).
             </p>
           </div>
-        </BackgroundGradient>
+        </div>
       </div>
       <div className="flex justify-center items-center flex-wrap pb-10">
         <TimeUntilCompetition />
-        {/* <Link href="/leaderboard">
-          <MagicButton
-            title="Go To last updated leaderboard"
-            icon={<MdDashboard />}
-            position="right"
-          />
-        </Link> */}
       </div>
     </>
   );

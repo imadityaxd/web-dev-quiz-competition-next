@@ -5,7 +5,7 @@ import axios from "axios";
 import { showToast } from "@/helpers/toastModifier/modifyToast";
 import { FaSpinner } from "react-icons/fa";
 import Link from "next/link";
-import MagicButton from "@/components/ui/MagicButton";
+import Button from "@/components/Button";
 
 interface User {
   userId: string;
@@ -66,7 +66,7 @@ const Leaderboard: React.FC = () => {
           Leaderboard
         </h2>
 
-        <div className="max-w-4xl mx-auto px-4 py-6 bg-gray-700 rounded-lg shadow-lg mb-8">
+        <div className="max-w-4xl mx-auto px-4 py-6 bg-gray-800 rounded-lg shadow-lg mb-8">
           {latestScore && (
             <p className="text-lg sm:text-xl mt-1 font-semibold text-purple">
               Your Last Score: {latestScore.score}
@@ -75,7 +75,7 @@ const Leaderboard: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse table-auto">
               <thead>
-                <tr className="bg-gray-700">
+                <tr className="bg-gray-800">
                   <th className="px-4 py-3 border-b text-purple border-gray-500 text-left w-1/12">
                     Rank
                   </th>
@@ -94,7 +94,7 @@ const Leaderboard: React.FC = () => {
                 {leaderboard.map((user, index) => (
                   <tr
                     key={index}
-                    className={index % 2 === 0 ? "bg-gray-600" : "bg-gray-700"}
+                    className={index % 2 === 0 ? "bg-gray-700" : "bg-gray-800"}
                   >
                     <td className="px-4 py-3 border-b border-gray-500 text-center text-purple font-semibold">
                       {index + 1}.
@@ -119,7 +119,7 @@ const Leaderboard: React.FC = () => {
                         "____"
                       )}
                     </td>
-                    <td className="px-4 py-3 border-b border-gray-500 font-semibold text-white-100 text-center">
+                    <td className="px-4 py-3 border-b border-gray-600 font-semibold text-white-100 text-center">
                       {user.score}
                     </td>
                   </tr>
@@ -131,7 +131,7 @@ const Leaderboard: React.FC = () => {
       </div>
       <div className="text-center">
         <Link href="/start-quiz" className="mt-14 text-center">
-          <MagicButton title="Play-Again" icon={""} position="right" />
+          <Button test="Play-Again" />
         </Link>
       </div>
     </>
