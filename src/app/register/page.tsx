@@ -113,7 +113,7 @@ export default function Register() {
                 <span>Loading...</span>
               </div>
             ) : (
-              "Submit and start Quiz"
+              "Submit and Play Quiz"
             )}
 
             <BottomGradient />

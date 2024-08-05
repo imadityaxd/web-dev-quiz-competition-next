@@ -8,7 +8,7 @@ import React from "react";
 import { FaTrophy } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "About JavaScript Quiz Competition - Test Your Skills",
+  title: "Learn JavaScript With Quiz | About Javascript Quiz Competition",
   description:
     "Learn about the JavaScript output-based question competition. Compete in our weekly and daily quizzes, improve your skills, and see how you rank among other developers on the leaderboard.",
   twitter: {

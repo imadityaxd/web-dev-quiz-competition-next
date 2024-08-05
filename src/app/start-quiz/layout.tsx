@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Start JavaScript Quiz - Rules and Instructions",
+  title: "Play JavaScript Quiz - Rules and Instructions of Competition",
   description: "Get ready to test your JavaScript skills! Review the rules and instructions for the JavaScript quiz competition and click the button to start the quiz.",
   twitter: {
     card: "summary_large_image",

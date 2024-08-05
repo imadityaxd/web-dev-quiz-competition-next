@@ -21,7 +21,7 @@ const kanit = Kanit({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.webdevquiz.online"),
-  title: "JavaScript Quizzes - Test Your Skills and Compete with Others",
+  title: "JavaScript Quiz - Test Your Skills and Compete with Others",
   description:
     "Join the JavaScript and web dev Quiz Challenge to test your skills with output-based questions. Compete in weekly quizzes, see your rank on the leaderboard, and enhance your JavaScript knowledge. Perfect for developers looking to sharpen their coding skills!",
   twitter: {

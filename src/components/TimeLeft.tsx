@@ -19,7 +19,7 @@ const TimeUntilCompetition: React.FC = () => {
     const updateTimer = async () => {
       const now = new Date();
 
-      let nextCompetitionUTC = getCompetitionTimeUTC(0, 7, 0); // Competition set at everyday at 7 am to 11: 59 pm.
+      let nextCompetitionUTC = getCompetitionTimeUTC(0, 6, 0); // Competition set at everyday at 7 am to 11: 59 pm.
 
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get the user's time zone dynamically
       // console.log("use Zone: ", timeZone);
@@ -76,7 +76,7 @@ const TimeUntilCompetition: React.FC = () => {
     <div className="bg-black-100 flex justify-center items-center pt-10 p-4 text-center">
       {timerEnded ? (
         <Link href="/register" className="w-full">
-          <MagicButton title="Quick Registration" icon="" position="" />
+          <MagicButton title="Play Quiz" icon="" position="" />
         </Link>
       ) : (
         <div className="text-center border border-purple rounded-lg font-semibold text-purple p-4">
