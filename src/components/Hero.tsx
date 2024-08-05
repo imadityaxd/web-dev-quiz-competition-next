@@ -17,7 +17,7 @@ export default function Hero() {
           </h3> */}
           <h2 className="text-center text-[40px] md:text-5xl lg:text-6xl font-bold">
             Learn web development with{" "}
-            <span className="bg-gradient-to-r from-orange-500 to-red-800 text-transparent bg-clip-text">
+            <span className="text-purple">
               Quiz
             </span>
           </h2>
