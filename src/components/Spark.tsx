@@ -22,19 +22,9 @@ export function SparklesPreview() {
             </h1>
 
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
-              <FaCheckCircle className="inline text-3xl text-purple pr-2" />I&apos;ve
+              <FaCheckCircle className="inline text-3xl text-purple pr-2" />we&apos;ve
               build this website as a platform for JavaScript enthusiasts from
               all around the world to come together compete with each other.
-            </p>
-            <p className="font-normal text-base text-white-200 mb-4 relative z-50">
-              <FaCheckCircle className="inline text-3xl text-purple pr-2" />
-              Everyday at
-              <span className="font-semibold"> 7:00 AM (IST)</span>,
-              I organize a{" "}
-              <span className="font-semibold">JavaScript Quiz Competition</span>{" "}
-              where you can put your skills to the test and compete with others
-              for the top rank on our{" "}
-              <span className="font-semibold">leaderboard</span>.
             </p>
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
               <FaCheckCircle className="inline text-3xl text-purple pr-2" />{" "}

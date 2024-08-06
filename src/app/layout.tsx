@@ -5,7 +5,6 @@ import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "./provider";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
-import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const play_fair_display_init = Playfair_Display({
@@ -61,10 +60,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <Navbar />
-            {children}
-          </AuthProvider>
+          <Navbar />
+          {children}
           <Toaster
             position="top-center"
             reverseOrder={false}
