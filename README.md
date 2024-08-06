@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# JavaScript Quiz Website
 
-## Getting Started
+Welcome to the JavaScript Quiz Website! This is a Next.js application that allows users to participate in JavaScript output-based quizzes and view their real-time ranks on the leaderboard.
 
-First, run the development server:
+## Project
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Project Screenshot](./public/project.png)
+
+## Features
+
+- **JavaScript Quizzes**: Play quizzes with various JavaScript output-based questions.
+- **Leaderboard**: View real-time rankings of participants.
+- **Responsive Design**: Optimized for various devices and screen sizes.
+- **Real-Time Updates**: See your rank and others' performance in real-time.
+
+## Prerequisites
+
+Before running this application, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v14 or later)
+- [npm](https://www.npmjs.com/)
+
+## Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/cykoravish/web-dev-quiz-competition-next.git
+   cd webdevquiz
+   npm install
+   ```
+
+## Configuration
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory of the project and add your environment variables. Here is a sample configuration:
+
+```env
+MONGO_URI=
+JWT_TOKEN_SECRET=
+NODE_ENV=development
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Database Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Set Up MongoDB**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   Ensure your MongoDB database is set up and accessible. You can use a service like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) or host it yourself.
 
-## Learn More
+2. **Update `.env.local`**
 
-To learn more about Next.js, take a look at the following resources:
+   Update the `MONGODB_URI` in the `.env.local` file with your MongoDB connection string.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Create Collections**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   If you are using MongoDB Atlas or a similar managed service, you might need to create collections or import initial data into your database.
 
-## Deploy on Vercel
+4. **Access Database**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Ensure that your application has the necessary permissions to access and modify the MongoDB database. Verify that the network access settings are correctly configured (e.g., IP whitelist).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+
+If you'd like to contribute to this project, please follow these steps:
+
+1. **Fork the repository**
+
+   Click the "Fork" button at the top right of the repository page on GitHub to create your own copy of the repository.
+
+2. **Create a new branch**
+
+   ```bash
+   git checkout -b feature/YourFeature
+   git add .
+   git commit -m 'Add new feature or fix'
+   git push origin feature/YourFeature
+   ```
+
+## Contact
+
+For any questions, feedback, or inquiries, please feel free to reach out through the following channels:
+
+- **Email:** [your-email@example.com](mailto:ravishbisht86@gmail.com)
+- **Instagram:** [@web**\_\_\_\_**developer](https://instagram.com/web________developer)
+
+We value your feedback and will do our best to respond promptly!
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
