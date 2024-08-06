@@ -81,8 +81,8 @@ If you'd like to contribute to this project, please follow these steps:
 
 For any questions, feedback, or inquiries, please feel free to reach out through the following channels:
 
-- **Email:** [your-email@example.com](mailto:ravishbisht86@gmail.com)
-- **Instagram:** [@web**\_\_\_\_**developer](https://instagram.com/web________developer)
+- **Email:** [ravishbisht86@gmail.com](mailto:ravishbisht86@gmail.com)
+- **Instagram:** [Ravish](https://instagram.com/web________developer)
 
 We value your feedback and will do our best to respond promptly!
 
