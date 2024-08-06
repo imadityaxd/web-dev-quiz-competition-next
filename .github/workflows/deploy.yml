@@ -7,8 +7,8 @@ on:
   pull_request:
     branches: ["main"]
   schedule:
-    # - cron: "0 0 * * *"
-    - cron: "*/5 * * * *"
+    - cron: "0 0 * * *"
+    
 # Authenticate to the server via ssh and run our deployment script
 jobs:
   deploy:
