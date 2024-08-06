@@ -88,4 +88,4 @@ We value your feedback and will do our best to respond promptly!
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
