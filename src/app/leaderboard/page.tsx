@@ -131,7 +131,7 @@ const Leaderboard: React.FC = () => {
       </div>
       <div className="text-center">
         <Link href="/start-quiz" className="mt-14 text-center">
-          <Button test="Play-Again" />
+          <Button text="Play-Again" />
         </Link>
       </div>
     </>

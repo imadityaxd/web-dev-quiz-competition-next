@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (timerEnded === false) {
       // Make the API call when the timer is false
       axios
-        .post("/api/archiveUsers")
+        .get("/api/archiveUsers")
         .then((response) => {
           console.log("Users archived successfully:", response.data);
         })

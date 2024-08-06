@@ -1,12 +1,11 @@
 import dbConnect from "@/lib/dbConnect";
 import ArchivedUser from "@/model/ArchievedUser";
 import UserModel from "@/model/User";
-import { NextRequest, NextResponse } from "next/server";
-import { useAuth } from "@/context/AuthContext";
+import { NextResponse } from "next/server";
 
 // const { timerEnded } = useAuth();
 
-export async function POST(req: NextRequest) {
+export async function POST() {
   await dbConnect();
 
   try {

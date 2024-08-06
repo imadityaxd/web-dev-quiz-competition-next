@@ -6,7 +6,8 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
+  schedule:
+    - cron: "0 0 * * *"
 # Authenticate to the server via ssh and run our deployment script
 jobs:
   deploy:
@@ -25,3 +26,9 @@ jobs:
             cd ~/web-dev-quiz-competition-next
             chmod +x ./.scripts/deploy.sh
             ./.scripts/deploy.sh
+  call-daily-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call the Next.js API
+        run: |
+          curl -X POST https://webdevquiz.online/api/archiveUsers
