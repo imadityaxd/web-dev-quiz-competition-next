@@ -73,7 +73,7 @@ export default function Register() {
               </Label>
               <Input
                 id="firstname"
-                placeholder="Ravish"
+                placeholder="xdcoder"
                 type="text"
                 required
                 onChange={(e) => setName(e.target.value)}
@@ -85,7 +85,7 @@ export default function Register() {
               <Label htmlFor="firstname">Instagram Id &nbsp;(optional)</Label>
               <Input
                 id="insta"
-                placeholder="@cykoravish"
+                placeholder="@xdcoder.xyz"
                 type="text"
                 onChange={(e) => setInstaId(e.target.value)}
               />
