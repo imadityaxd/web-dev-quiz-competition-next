@@ -82,7 +82,7 @@ If you'd like to contribute to this project, please follow these steps:
 For any questions, feedback, or inquiries, please feel free to reach out through the following channels:
 
 - **Email:** [subhaiyash@gmail.com](mailto:subhaiyash@gmail.com)
-- **Instagram:** [Aditya](https://instagram.com/xdcoder.xyz)
+- **Instagram:** [xdCoder](https://instagram.com/xdcoder.xyz)
 
 We value your feedback and will do our best to respond promptly!
 
