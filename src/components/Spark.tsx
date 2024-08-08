@@ -18,7 +18,7 @@ export function SparklesPreview() {
           <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
           <div className="relative shadow-xl bg-gray-800 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start">
             <h1 className="font-bold text-xl text-purple mb-4 relative z-50">
-              Hi i&apos;m Ravish from India, Uttarakhand.
+              Hi i&apos;m Aditya from India, Varanasi.
             </h1>
 
             <p className="font-normal text-base text-white-200 mb-4 relative z-50">
@@ -41,7 +41,7 @@ export function SparklesPreview() {
               <FaCheckCircle className="inline text-3xl text-purple pr-2" />Top performers will receive
               a special shoutout on our{" "}
               <a
-                href="https://www.instagram.com/web________developer"
+                href="https://www.instagram.com/xdcoder.xyz"
                 target="_blank"
                 rel="noopener noreferrer" className="text-pink-500 font-bold"
               >

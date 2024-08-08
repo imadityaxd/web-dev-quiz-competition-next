@@ -18,7 +18,7 @@ export function Navbar() {
       ),
     },
     {
-      name: "competition",
+      name: "Competition",
       link: "/start-quiz",
       icon: (
         <FaTrophy className="h-4 w-4 text-neutral-500 dark:text-white" />

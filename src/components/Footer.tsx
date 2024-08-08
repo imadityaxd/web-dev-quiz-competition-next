@@ -18,7 +18,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-sm text-white-100 text-center pt-4">
-        For any query feel free to contact me at <span className="font-bold">ravishbisht86@gmail.com</span> 
+        For any query feel free to contact me at <span className="font-bold">subhaiyash@gmail.com</span> 
       </p>
     </footer>
   );
